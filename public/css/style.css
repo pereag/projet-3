@@ -2,8 +2,12 @@
 	@import url ('https://fonts.googleapis.com/css?family= News + Cycle ');
 
 /*----- General -----*/
+	footer {
+		
+		
+	}
 	body {
-		width:99.2%;
+		width:100%;
 		background-color:#e8debe;
 		position: absolute;
 		padding-bottom: 240px;
