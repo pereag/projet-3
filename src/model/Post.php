@@ -62,26 +62,26 @@ class Post
 
 	public function error()
 	{
-		return $this->error;
+		return $this->$error;
 	}
 
 	public function id()
 	{
-		return $this->id;
+		return $this->$id;
 	}
 
 	public function title()
 	{
-		return $this->title;
+		return $this->$title;
 	}
 
 	public function content()
 	{
-		return $this->content;
+		return $this->$content;
 	}
 
 	public function datePost()
 	{
-		return $this->datePost;
+		return $this->$datePost;
 	}
 }

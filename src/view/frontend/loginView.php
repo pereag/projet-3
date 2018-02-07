@@ -6,19 +6,21 @@
 <div class="container">
 	<section>
 		<div class="col-lg-offset-3 col-lg-6">
-			<h1>portail de connexion</h1>
-			<div class="form">
-				<div class="form-group">
-	      			<label for="texte">pseudo: </label>
-	     			<input id="text" type="text" class="form-control" width="200px";>
-	   			</div>
-	   			<div class="form-group">
-	      			<label for="texte">Mot de passe: </label>
-	     			<input id="text" type="password" class="form-control">
-	   			</div>
-	   			<a href="index.php?action=listPostsAdmin"><button class="btn" btn-default" type="button">Valider</button><a/>
+			<h1>Portail de connexion</h1>
+			<form action="index.php?action=verifyLogin" method="post" class="add_comment">
+				<div class="form">
+					<div class="form-group">
+		      			<label for="texte">Pseudo: </label>
+		     			<input id="pseudo" type="text" name="pseudo" class="form-control" width="200px";>
+		   			</div>
+		   			<div class="form-group">
+		      			<label for="texte">Mot de passe: </label>
+		     			<input id="text" type="password" name="password" class="form-control">
+		   			</div>
+		   			<button  class="btn btn-default" type="submit">Valider</button>
+					</div>
 				</div>
-			</div>
+			</form>
 	</section>
 </div>
 

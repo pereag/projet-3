@@ -9,8 +9,7 @@
 		<h1>Tableau de bord</h1>
 		<div class="navigation">
 			<div class="row">
-				<div class="col-lg-2 col-sm-2 col-xs-5"><h2><a href="index.php?action=listPostsAdmin">Articles</a></h2></div>
-				<h2><a href="index.php?action=listCommentsAdmin" class="active">Commentaires</a></h2>
+				<div class="col-lg-3 "><h2><a href="index.php?action=listPostsAdmin">Articles</a> | <a href="index.php?action=listCommentsAdmin" class="active">Commentaires<a/></h2></div>
 			</div>
 		</div>
 		<div class="comments_report_admin">

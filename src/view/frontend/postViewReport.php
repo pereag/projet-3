@@ -37,6 +37,7 @@
 					</div>
 				</div>
 			<?php } $comments->closeCursor(); ?> 
+			<p class="comment_report"><span class="glyphicon glyphicon-exclamation-sign"></span> Le commentaire à bien était signaler</p>
 		</div>
 		<form action="index.php?action=addCommentView&amp;id=<?= $post['id'] ?>" method="post" class="add_comment">
 			<div class="row">
@@ -59,7 +60,7 @@
 					     	</div>
 					     </div>
 			   		</div>
-			   			<button  class="btn btn-default" type="submit">Envoyer</button>
+			   		<button  class="btn btn-default" type="submit">Envoyer</button>
 					</div>
 				</div>
 			</div>	

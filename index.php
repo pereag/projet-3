@@ -9,9 +9,13 @@ try {
 			$frontendController->listPostsView();
 		}
 		elseif ($_GET['action'] == 'postView' ) {
-			if (isset($_GET['id']) and $_GET['id'] > 0) {
+			if (isset($_GET['id']) && $_GET['id'] > 0 && !isset($_GET['report'])) {
 				$frontendController = new FrontendController();
 				$frontendController->postview();
+			}
+			elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['report']) && $_GET['report'] = true ) {
+				$frontendController = new FrontendController();
+				$frontendController->postviewReport();
 			}
 			else {
 				throw new Exception('L\'id du billet est invalide');	
@@ -30,20 +34,30 @@ try {
         }
         elseif ($_GET['action'] == 'reportComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
+            	if (isset($_GET['postid']) && $_GET['postid'] > 0) {
                 	$frontendController = new FrontendController();
-                    $frontendController->reportComment($_GET['id']);
+                    $frontendController->reportComment($_GET['id'],$_GET['postid']);
+                }
+                else { 
+                	throw new Exception('L\'id de l\'article n\'est pas valide');
+                }
             }
             else {
-                    throw new Exception('L\'id n\'est pas valide');
+                    throw new Exception('L\'id du commentaire n\'est pas valide');
             }   
         }
 		elseif ($_GET['action'] == 'loginView' ) {
 			$frontendController = new FrontendController();
 			$frontendController->loginView();
 		}
-		elseif ($_GET['action'] == 'lostPasswordView' ) {
-			$frontendController = new FrontendController();
-			$frontendController->lostPasswordView();
+		elseif ($_GET['action'] == 'verifyLogin' ) {
+			if (! empty($_POST['pseudo']) && ! empty($_POST['password'])) {
+				$frontendController = new FrontendController();
+				$frontendController->verifyLogin($_POST['pseudo'], $_POST['password']);
+			}
+			else {
+				throw new Exception('identifiant manquant');
+			}
 		}
 		elseif ($_GET['action'] == 'legalNoticeView' ) {
 			$frontendController = new FrontendController();

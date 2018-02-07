@@ -113,6 +113,10 @@
 		border-radius: 2px 2px 10px 10px;
 		box-shadow: 0px 4px 4px;
 	}
+	.comment_report {
+		color:#D43F3A;
+		text-align:right;
+	}
 	 .article_post li {text-align: right;}
 
 	.comments {

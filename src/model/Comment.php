@@ -5,12 +5,14 @@ class Comment
 	protected $error = [];
 	protected $id;
 	protected $idPost;
-	protected $author;
+	protected $report;
+	protected $pseudo;
 	protected $content;
 	protected $dateComment;
 
-	const PSEUDO_INVALIDE = 1;
-	const CONTENUE_INVALIDE = 2;
+	const REPORT_INVALIDE = 1;
+	const PSEUDO_INVALIDE = 2;
+	const CONTENT_INVALIDE = 3;
 
 	public function __construct($values = [])
 	{
@@ -41,20 +43,30 @@ class Comment
 		$this->idPost = (int) $setId;
 	}
 
-	public function setAutor($author)
+	public function setreport($report)
 	{
-		if (! is_string($author) and empty($author)) {
+		if($report = 0 or = 1){
+			$this->report = (int) $report;	
+		}
+		else {
+			$this->error[] = self::REPORT_INVALIDE;
+		}
+	}
+
+	public function setpseudo($pseudo)
+	{
+		if (! is_string($pseudo) && empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
 		}
 		else {
-			$this->author = $author;
+			$this->pseudo = $pseudo;
 		}
 	}
 
 	public function setContent($content)
 	{
-		if (! is_string($content) and empty($content)) {
-			$this->error[] = self::CONTENUE_INVALIDE;
+		if (! is_string($content) && empty($content)) {
+			$this->error[] = self::CONTENT_INVALIDE;
 		}
 		else {
 			$this->content = $content;
@@ -83,9 +95,14 @@ class Comment
 		 return $this->idPost;
 	}
 
-	public function author()
+	public function report()
 	{
-		return $this->author;
+		 return $this->report;
+	}
+
+	public function pseudo()
+	{
+		return $this->pseudo;
 	}
 
 	public function content()

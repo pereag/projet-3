@@ -1,6 +1,7 @@
 <?php
 require_once('src/model/PostManager.php');
 require_once('src/model/CommentManager.php');
+require_once('src/model/membersManager.php');
 
 class frontendController
 {
@@ -28,6 +29,18 @@ class frontendController
 		require('src/view/frontend/postView.php');
 	}
 
+	 public function postViewReport()
+	{
+		$postManager = new PostManager();
+		$commentManager = new CommentManager();
+
+		$post = $postManager->getPost($_GET['id']);
+		$comments = $commentManager->getComments($_GET['id']);
+
+
+		require('src/view/frontend/postViewReport.php');
+	}
+
 	public function addComment($postId, $pseudo, $content)
 	{
 	    $commentManager = new CommentManager();
@@ -41,18 +54,25 @@ class frontendController
 	        header('Location: index.php?action=postView&id=' . $postId);
 	    }
 	}
-	public function reportComment($id)
+	public function reportComment($id, $postid)
 	{
 		$commentManager = new commentManager();
 		$reportComment = $commentManager->reportCommentPost($_GET['id']);
-		header('location: index.php?action=postView&id=' . $postid);
+		header('location: index.php?action=postView&id=' . $postid.'&report=true');
 	}
 	public function loginView()
 	{
 		require('src/view/frontend/loginView.php');
 	}
-	public function lostPasswordView()
+	public function verifyLogin($pseudo, $password)
 	{
-		require('src/view/frontend/lostPasswordView.php');
+		$membersManager = new membersManager();
+		$getMember = $membersManager->getlogin();
+		if($pseudo == $getMember['pseudo'] && password_verify($password, $getMember['password'])) {
+			header('location: index.php?action=listPostsAdmin');
+		}
+		else {
+			throw new Exception('Identifiant ou mot de pass invalide');
+		} 
 	}
 }
