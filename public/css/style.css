@@ -1,0 +1,253 @@
+/*----- font-family -----*/
+	@import url ('https://fonts.googleapis.com/css?family= News + Cycle ');
+
+/*----- General -----*/
+	body {
+		width:99.2%;
+		background-color:#e8debe;
+		position: absolute;
+		padding-bottom: 240px;
+		margin-bottom: 0px;
+		 min-height: 100%;
+	}
+	.container {
+		padding-bottom: 20px;
+	  	padding-right: 20px;
+	 	 padding-left: 20px;
+	  	margin-right: auto;
+	  	margin-left: auto;
+	}
+	img {width: 100%;}
+
+	strong {font-weight: bold;}
+
+	.alaska_banner {
+		margin-top:20px;
+		margin-bottom: 10px;
+		border-radius:10px 10px 0px 0px;
+		box-shadow: 0px 4px 5px;
+	}
+	.form {
+		padding:20px 20px 20px 20px;
+		background-color: #373231;
+		border-radius: 10px;
+		box-shadow: 0px 4px 5px;
+	}
+	.form label {color:silver;}
+
+	.form .btn {color:#000000;}
+
+/*----- Header clientView -----*/
+	header {
+		background-color: #48453f;
+		box-shadow: 3px 3px 3px;
+		width:auto;
+		position: fixed;
+		 left: 0; right: 0; top: 0;
+		 z-index: 1;
+	}
+
+/*----- section clientView -----*/
+	section {margin-top:70px;}
+
+	section h1 {
+		font-family: 'News Cycle';
+		color: #48452f;
+		margin-top: 5px;
+		margin-bottom: 10px;
+		font-size: 3em;
+		text-align: center;
+	}
+	section h2 {
+		margin-top: 10px;
+		font-family: 'News Cycle';
+		color: silver;
+		font-size: 1.8em;
+	}
+	section h3 {
+		margin-top: 10px;
+		font-family: 'News Cycle';
+		color:silver;
+		font-size: 1.7em;
+	}
+	section p {
+		text-align: justify;
+		font-family: 'arial';
+		color: silver;
+	}
+	section a {color:silver;}
+
+	section li {
+		font-weight: bold;
+		color:silver;
+	}
+	section h4 {
+		font-family:'News Cycle';
+		color: silver;
+	}
+	.article_list {
+		background-color:#373231;
+		padding:5px 20px 5px 20px;
+		box-shadow:0px 4px 4px; 
+		border-radius: 0px 0px 10px 10px;
+	}
+	.article {
+		background-color:#48453f;
+		padding:5px 20px 10px 20px;
+		margin-bottom: 20px;
+		box-shadow:0px 4px 4px; 
+		border-radius: 10px 10px 10px 10px;
+	}
+	.article a:hover {
+		font-size:1.01em;
+		text-decoration: none;
+	}
+	.button_report {
+		margin-left:50px;
+		margin-bottom:5px;
+	}
+/*----- section postview -----*/
+	.article_post {
+		background-color:#373231;
+		padding:30px 30px 20px 30px;
+		border-radius: 2px 2px 10px 10px;
+		box-shadow: 0px 4px 4px;
+	}
+	 .article_post li {text-align: right;}
+
+	.comments {
+		background-color:#373231;
+		padding:5px 20px 5px 20px;
+		box-shadow:0px 4px 4px; 
+		border-radius: 10px 10px 10px 10px;
+	}
+	.comment {
+		background-color:#48453f;
+		padding: 1px 10px 1px 20px;
+		border-radius: 20px;
+		margin-bottom: 15px;
+	}
+/*----- legalnoticeView -----*/
+	.legalNotice {
+		background-color:#373231;
+		padding:5px 20px 5px 20px;
+		box-shadow:0px 4px 4px; 
+		border-radius: 10px 10px 10px 10px;
+	}
+	.legalNotice h1 {color :silver;}
+
+	.legalNotice a {text-decoration: underline;}
+/*----- footer clientView -----*/
+	footer {
+		background-color:#373231;
+		margin-top: 25px;
+		padding-top: 40px;
+		padding-bottom:10px;
+		position: absolute;
+		left: 0; right: 0; bottom:0;
+	}
+	footer li {
+		color:#7c7668;
+		font-family:'Lucida Sans Unicode';
+		font-size: 1.1em;
+	}
+	#administration_space {padding-left:75px;}
+
+	footer a:hover {color: grey;}
+/*----- dashboard admin -----*/
+	.navigation {
+			background-color:#373231;
+			padding:5px 20px 5px 20px;
+			margin-bottom: 10px;
+			box-shadow:0px 4px 4px; 
+			border-radius: 10px 10px 0px 0px;
+	}
+/*----- posts admin -----*/
+	.active {
+		color:#C0C0C0;
+		text-decoration:underline;
+	}
+	.articles_admin {
+		background-color:#373231;
+		margin-top: 5px;
+		margin-bottom:0px;
+			padding:5px 15px 5px 15px;
+			box-shadow:0px 4px 4px; 
+			border-radius: 0px 0px 10px 10px;
+	}
+	.article_admin {
+		font-size:0.8em;
+		background-color:#48453f;
+		padding:5px 20px 5px 20px;
+		margin:10px 5px 10px 5px;
+		box-shadow:0px 4px 4px; 
+		border-radius: 10px 10px 10px 10px;
+	}
+	.article_admin h3 :hover {
+		font-size:1.1em;
+		color:silver;
+		text-decoration:none;
+	}
+	.description_article_admin{margin-top:10px;}
+
+	 #add_article{margin:12px 8px 8px 5px;}	
+/*------ New post admin/modif port admin --------*/
+	.tinymce {
+		padding:20px 30px 20px 30px;
+				background-color: #373231;
+				border-radius: 10px;
+				box-shadow: 0px 4px 5px;
+	}
+	.label_add_post {
+		color:silver;
+	}
+	.title_new_article {
+		margin-bottom:20px;
+	}
+	.boutton_save_new_article {
+		margin-top:15px;
+	}
+/*------ Comments admin --------*/
+	 .comments_admin {
+		background-color:#373231;
+		margin-top: 5px;
+		margin-bottom:0px;
+			padding:5px 15px 5px 15px;
+			box-shadow:0px 4px 4px; 
+			border-radius: 0px 0px 10px 10px;
+	}
+	.comments_report_admin{
+		background-color:#373231;
+		margin-top: 5px;
+		margin-bottom:10px;
+			padding:5px 15px 5px 15px;
+			box-shadow:0px 4px 4px;
+			border-radius: 0px 0px 0px 0px;
+	}
+	.boutton_comment_admin {
+		margin-right: 80px;
+	}
+	.boutton_remove_admin {
+		margin-left: 10px;
+	}
+	@media screen and (max-width: 770px) {
+		section h1 {
+			font-size:2em;
+		}
+		section h2 {
+			font-size:1.5em;
+		}
+		section h2 {
+			font-size:1.4em;
+		}
+		.list-unstyled {
+			font-size:0.8em;
+		}
+		.text_button_admin_comments {
+			display:none;
+
+	}
+	@media screen and (max-width: 500px) {
+		.text_button_admin {
+			display:none;
+	}
