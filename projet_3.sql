@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 01 fév. 2018 à 00:47
+-- Généré le :  jeu. 08 fév. 2018 à 18:58
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -53,11 +53,11 @@ INSERT INTO `comments` (`id`, `id_post`, `report`, `pseudo`, `content`, `date_co
 -- --------------------------------------------------------
 
 --
--- Structure de la table `member`
+-- Structure de la table `members`
 --
 
-DROP TABLE IF EXISTS `member`;
-CREATE TABLE IF NOT EXISTS `member` (
+DROP TABLE IF EXISTS `members`;
+CREATE TABLE IF NOT EXISTS `members` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
   `Pseudo` varchar(255) NOT NULL,
   `Password` varchar(255) NOT NULL,
@@ -66,10 +66,10 @@ CREATE TABLE IF NOT EXISTS `member` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `member`
+-- Déchargement des données de la table `members`
 --
 
-INSERT INTO `member` (`Id`, `Pseudo`, `Password`, `Email`) VALUES
+INSERT INTO `members` (`Id`, `Pseudo`, `Password`, `Email`) VALUES
 (1, 'jeanforteroche', '$2y$10$DyfHT6SkRReTnMS2v4oAo.4bsNlLtHxeIflUYju94kgIzHxbXwofK', 'jean.forterochepro@gmail.com');
 
 -- --------------------------------------------------------
