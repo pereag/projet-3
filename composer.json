@@ -1,5 +1,6 @@
 {
     "require": {
-        "tinymce/tinymce": ">= 4"
+        "tinymce/tinymce": ">= 4",
+        "twig/twig": "^1.0"
     }
 }
