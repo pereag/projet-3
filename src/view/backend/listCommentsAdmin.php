@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<?php require('header.php'); ?>
+<?php require('./src/view/header.php'); ?>
 
 <div class="container">
 	<section>
@@ -15,7 +15,7 @@
 		<div class="comments_report_admin">
 			<div class=row>
 				<div class="col-lg-12">
-				<h2>Commentaires signaler</h2>
+				<h2>Commentaires signalés</h2>
 				<hr>
 				</div>
 			</div>
@@ -53,7 +53,7 @@
 		<div class="comments_admin">
 			<div class=row>
 				<div class="col-lg-12">
-				<h2>Autre Commentaires</h2>
+				<h2>Autres Commentaires</h2>
 				<hr>
 				</div>
 			</div>
@@ -85,8 +85,8 @@
 		</div>
 	</section>
 </div>
-<?php require('footer.php'); ?>
+<?php require('./src/view/footer.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('./src/view/template.php'); ?>

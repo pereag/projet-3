@@ -135,13 +135,6 @@ try {
 				throw new Exception('l\'id du billet est invalide');
 			}
 		}
-		elseif ($_GET['action'] == 'legalNoticeAdmin') { 
-			$backendController = new BackendController();
-			$backendController->legalNoticeAdmin();
-		}
-		else {
-			throw new Exception('la page n\'a pas était trouver');
-		}
 	}
 	else {
 		$frontendController = new FrontendController();

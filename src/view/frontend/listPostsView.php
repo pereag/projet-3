@@ -3,11 +3,11 @@
 
 <?php ob_start(); ?>
 
-<?php require('header.php'); ?>
+<?php require('./src/view/header.php'); ?>
 <div class="container">
 	<section>
 		<div class="row">
-			<h1 class="col-lg-12">Blog personnel dédier à mon nouveau livre</h1>
+			<h1 class="col-lg-12">Blog personnel dédié à mon nouveau livre</h1>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
@@ -42,8 +42,8 @@
 		</div>
 	</section>
 </div>
-<?php require('footer.php'); ?>
+<?php require('./src/view/footer.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('./src/view/template.php'); ?>

@@ -10,10 +10,6 @@ class BackendController
 		$posts = $postManager->getPostsAdmin();
 		require('src/view/backend/listPostsAdmin.php');
 	}
-	public function legalNoticeAdmin()
-	{
-		require('src/view/backend/legalNoticeAdmin.php');
-	}
 	public function newPostAdmin()
 	{
 		require('src/view/backend/newPostAdmin.php');

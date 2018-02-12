@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<?php require('header.php'); ?>
+<?php require('./src/view/header.php'); ?>
 <div class="container">
 	<section>
 		<h1>Nouvel article</h1>
@@ -24,8 +24,8 @@
 		</form>
 	</section>
 </div>
-<?php require('footer.php'); ?>
+<?php require('./src/view/footer.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require('template.php'); ?>
+<?php require('./src/view/template.php'); ?>
