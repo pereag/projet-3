@@ -2,10 +2,6 @@
 	@import url ('https://fonts.googleapis.com/css?family= News + Cycle ');
 
 /*----- General -----*/
-	footer {
-		
-		
-	}
 	body {
 		width:100%;
 		background-color:#e8debe;
@@ -46,13 +42,14 @@
 		background-color: #48453f;
 		box-shadow: 3px 3px 3px;
 		width:auto;
+		min-width:90%;
 		position: fixed;
 		 left: 0; right: 0; top: 0;
 		 z-index: 1;
 	}
 
 /*----- section clientView -----*/
-	section {margin-top:70px;}
+	section {margin-top:80px;}
 
 	section h1 {
 		font-family: 'News Cycle';
@@ -232,30 +229,32 @@
 			box-shadow:0px 4px 4px;
 			border-radius: 0px 0px 0px 0px;
 	}
-	.boutton_comment_admin {
-		margin-right: 80px;
-	}
-	.boutton_remove_admin {
-		margin-left: 10px;
-	}
-	@media screen and (max-width: 770px) {
-		section h1 {
-			font-size:2em;
-		}
-		section h2 {
-			font-size:1.5em;
-		}
-		section h2 {
-			font-size:1.4em;
-		}
-		.list-unstyled {
-			font-size:0.8em;
-		}
-		.text_button_admin_comments {
-			display:none;
+	.boutton_comment_admin {margin-right: 80px;}
 
+	.boutton_remove_admin {margin-left: 10px;}
+
+	@media screen and (max-width: 990px) {
+
+		section h1 { font-size :2em; }
+		section {margin-top:70px;}
 	}
+
+	@media screen and (max-width: 770px) {
+
+		section h2 {font-size:1.4em;}
+
+		section {margin-top:80px;}
+
+		.list-unstyled {font-size:0.8em;}
+
+		.text_button_admin_comments {display:none;}
+	}
+
 	@media screen and (max-width: 500px) {
-		.text_button_admin {
-			display:none;
+
+		.text_button_admin {display:none;}
+	}
+	@media screen and (max-width: 450px) {
+
+		section {margin-top:50px;}
 	}
