@@ -1,5 +1,8 @@
 <?php
 
+namespace Blog\Models;
+
+
 class Comment
 {
 	protected $error = [];
@@ -19,6 +22,7 @@ class Comment
 		if (! empty($values)) {
 			$this->hydrate($values);
 		}
+	}
 
 	public function hydrate($data)
 	{
@@ -33,19 +37,17 @@ class Comment
 	
 /*-----setters-----*/
 
-	public function setId($id)
-	{
+	public function setId($id) {
 		$this->id = (int) $id;
 	}
 
-	public function setIdPost($idPost)
-	{
-		$this->idPost = (int) $setId;
+	public function setIdPost($idPost) {
+		$this->idPost = (int) $idPost;
 	}
 
-	public function setreport($report)
+	public function setReport($report)
 	{
-		if($report = 0 or = 1){
+		if($report == 1) {
 			$this->report = (int) $report;	
 		}
 		else {
@@ -53,7 +55,7 @@ class Comment
 		}
 	}
 
-	public function setpseudo($pseudo)
+	public function setPseudo($pseudo)
 	{
 		if (! is_string($pseudo) && empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
@@ -73,45 +75,37 @@ class Comment
 		}
 	}
 
-	public function setDateComment(DateTime $dateComment)
-	{
+	public function setDateComment($dateComment) {
 		return $this->dateComment = $dateComment;
 	}
 
 /*-----getters-----*/
 
-	public function error()
-	{
+	public function getError() {
 		return $this->error;
 	}
 
-	public function id()
-	{
-		 return $this->id;
+	public function getId() {
+		return $this->id;
 	}
 
-	public function idPost()
-	{
-		 return $this->idPost;
+	public function getIdPost() {
+		return $this->idPost;
 	}
 
-	public function report()
-	{
-		 return $this->report;
+	public function getReport() {
+		return $this->report;
 	}
 
-	public function pseudo()
-	{
+	public function getPseudo() {
 		return $this->pseudo;
 	}
 
-	public function content()
-	{
+	public function getContent() {
 		return $this->content;
 	}
 
-	public function dateComment()
-	{
+	public function getDateComment() {
 		return $this->dateComment;
 	}
 }

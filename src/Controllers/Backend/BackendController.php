@@ -1,25 +1,35 @@
 <?php
-require_once('src/model/PostManager.php');
-require_once('src/model/CommentManager.php');
 
-class BackendController
+namespace Blog\Controllers\Backend;
+
+
+use Blog\Models\PostManager;
+use Blog\Models\CommentManager;
+
+class BackendController extends \Blog\Controllers\Controller
 {
 	public function listPostsAdmin()
 	{
 		$postManager = new PostManager();
+
 		$posts = $postManager->getPostsAdmin();
-		require('src/view/backend/listPostsAdmin.php');
+		return $this->twig->render('backend/listPostsAdmin.twig', array(
+			'posts' => $posts,
+		));
 	}
 	public function newPostAdmin()
 	{
-		require('src/view/backend/newPostAdmin.php');
+		return $this->twig->render('backend/newPostAdmin.twig');
 	}
 	public function listCommentsAdmin()
 	{
 		$commentManager = new commentManager();
 		$comments = $commentManager->getCommentsAdmin();
 		$commentsReport = $commentManager->getReportCommentsAdmin();
-		require('src/view/backend/listcommentsAdmin.php');
+		return $this->twig->render('backend/listCommentsAdmin.twig',array(
+			'comments' => $comments,
+			'commentsReport' => $commentsReport,
+		));
 	}
 	public function addPost($title, $content)
 	{
@@ -58,7 +68,9 @@ class BackendController
 	{
 		$postManager = new postManager();
 		$modifPost = $postManager->getModifArticleAdmin($_GET['id']);
-		require('src/view/backend/modifPostAdmin.php');
+		return $this->twig->render('backend/modifPostAdmin.twig', array(
+			'modifPost' => $modifPost,
+		));
 	}
 	public function sendModifPostAdmin($title, $content, $id)
 	{

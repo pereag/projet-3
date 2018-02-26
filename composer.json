@@ -1,4 +1,9 @@
 {
+	"autoload": {
+		"psr-4": {
+			"Blog\\":"src/"
+		}
+	},
     "require": {
         "tinymce/tinymce": ">= 4",
         "twig/twig": "^1.0",

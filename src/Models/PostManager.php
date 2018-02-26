@@ -1,33 +1,43 @@
 <?php
-require_once('Manager.php');
 
-class PostManager extends Manager
+namespace Blog\Models;
+
+use Blog\Models\Manager;
+use \PDO;
+
+
+class PostManager extends \Blog\Models\Manager
 {
 	public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, SUBSTRING(content,1,350) as extract_content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost_fr FROM posts ORDER BY datePost DESC');
-
-        return $req;
+        $req = $db->query('SELECT id, title, SUBSTRING(content,1,350) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY id DESC');
+        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $post)
+            {
+                $obj[] = new Post($post);
+            }
+        return $obj; 
     }
 
     public function getPost($id)
     {
     	$db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost_fr FROM posts WHERE id = ?');
+        $req = $db->prepare('SELECT id, title, content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts WHERE id = ?');
         $req->execute(array($id));
-        $post = $req->fetch();
-
-        return $post;
+        return new Post($req->fetch(PDO::FETCH_ASSOC));
 	}
 
     public function getPostsAdmin()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, SUBSTRING(content,1,116) as extract_content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost_fr FROM posts ORDER BY datePost DESC');
-
-        return $req; 
+        $req = $db->query('SELECT id, title, SUBSTRING(content,1,116) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost DESC');
+        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $post)
+            {
+                $obj[] = new Post($post);
+            }
+            return $obj; 
     }
+   
     public function createPost($title, $content)
     {
         $db = $this->dbConnect();
@@ -49,9 +59,12 @@ class PostManager extends Manager
         $db = $this->dbConnect();
         $post = $db->prepare('SELECT id, title, content FROM posts WHERE id = ?');
         $post->execute(array($id));
-        $modifpost = $post->fetch();
+        foreach ($post->fetchAll(PDO::FETCH_ASSOC) as $Post)
+            {
+                $obj[] = new Post($Post);
+            }
 
-        return $modifpost;
+        return $Post;
     }
     public function sendArticleAdmin($title, $content, $id)
     {

@@ -1,21 +1,26 @@
 <?php
-require('src/controler/frontend/FrontendController.php');
-require('src/controler/backend/BackendController.php');
+
+session_start();
+
+require_once('vendor/autoload.php');
+
+use \Blog\Controllers\Frontend\FrontendController;
+use \Blog\Controllers\Backend\BackendController;
 
 try {
 	if (isset($_GET['action'])) {
 		if ($_GET['action'] == 'listPostsView') {
 			$frontendController = new FrontendController();
-			$frontendController->listPostsView();
+			echo $frontendController->listPostsView();
 		}
 		elseif ($_GET['action'] == 'postView' ) {
 			if (isset($_GET['id']) && $_GET['id'] > 0 && !isset($_GET['report'])) {
 				$frontendController = new FrontendController();
-				$frontendController->postview();
+				echo $frontendController->postview();
 			}
 			elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['report']) && $_GET['report'] = true ) {
 				$frontendController = new FrontendController();
-				$frontendController->postviewReport();
+				echo $frontendController->postview();
 			}
 			else {
 				throw new Exception('L\'id du billet est invalide');	
@@ -66,11 +71,11 @@ try {
 /*------------------------Admin Part------------------------*/
 		elseif ($_GET['action'] == 'listPostsAdmin') {
 			$backendController = new BackendController();
-			$backendController->listPostsAdmin();
+			echo $backendController->listPostsAdmin();
 		}
 		elseif ($_GET['action'] == 'listCommentsAdmin') {
 			$backendController = new BackendController();
-			$backendController->listCommentsAdmin(); 
+			echo $backendController->listCommentsAdmin(); 
 		}
 		elseif ($_GET['action'] == 'restoreCommentAdmin') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -110,12 +115,12 @@ try {
         }
 		elseif ($_GET['action'] == 'newPostAdmin') {
 			$backendController = new Backendcontroller();
-			$backendController->newPostAdmin();
+			echo $backendController->newPostAdmin();
 		}
 		elseif ($_GET['action'] == 'modifPostAdmin') {
 			if (isset($_GET['id']) && $_GET['id'] > 0) {
 				$backendController = new Backendcontroller();
-				$backendController->modifPostAdmin($_GET['id']);
+				echo $backendController->modifPostAdmin($_GET['id']);
 			}
 			else {
 				throw new Exception('L\'id du billet est invalide');
@@ -138,7 +143,7 @@ try {
 	}
 	else {
 		$frontendController = new FrontendController();
-			$frontendController->listPostsView();
+		echo $frontendController->listPostsView();
 	}
 }
 catch (Exception $e) {

@@ -1,5 +1,7 @@
 <?php
 
+namespace Blog\Models;
+
 class Members
 {
 	protected $error = [];
@@ -37,7 +39,7 @@ class Members
 		$this->id = (int) $id;
 	}
 
-	public function setTitle($pseudo)
+	public function setPseudo($pseudo)
 	{
 		if (! is_string($pseudo) and empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
@@ -47,21 +49,10 @@ class Members
 		}
 	}
 
-	public function setContent($password)
+	public function setPassword($password)
 	{
 		if (! is_string($password)) {
 			$this->error[] = self::PASSWORD_INVALIDE;
-		}
-	}
-
-	public function setEmail($email)
-	{
-		if(preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $email) {
-			return $this->email;
-		}
-
-		else {
-			$this->error[] = self::EMAIL_INVALIDE;
 		}
 	}
 

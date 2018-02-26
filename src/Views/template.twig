@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" type="text/css" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/projet_3/public/css/style.css">
+	<link rel="icon" type="image/png" href="/projet_3/public/picture/iconj.png" />
+	<link rel="shortcut icon" type="image/x-icon" href="/projet_3/public/picture/iconj.ico" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
+	<script>tinymce.init({ selector:'#textarea' });</script>
+</head>
+<body>
+	<header class="row">
+	<div class ="col-lg-9">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">	
+			<a href="index.php?action=listPostsView"><img src="public/picture/logo_jean.png"></a>
+		</div>
+	</div>
+</header>
+	{% block content %}{% endblock %}
+	<footer>
+	<div class="col-lg-12" id="administration_space">
+		<div class="col-lg-offset-1 col-lg-4">
+			<ul class="list-unstyled">
+				<a href="index.php?action=loginView"><li>Espace administration</li></a><br/> 
+				<li>Copyright © 2018 – Jean Forteroche</li><br/>
+				<li>Tous droits réservés</li><br/>
+				<a href="index.php?action=legalNoticeView"><li>Mentions légales</li></a><br/>
+			</ul>	
+		</div>
+	</div>	
+</footer>
+</body>
+</html>

@@ -1,20 +1,28 @@
 <?php
-require_once('src/model/PostManager.php');
-require_once('src/model/CommentManager.php');
-require_once('src/model/membersManager.php');
 
-class frontendController
+namespace Blog\Controllers\Frontend;
+
+
+use Blog\Models\PostManager;
+use Blog\Models\CommentManager;
+use Blog\Models\MembersManager;
+use \Exception;
+
+class FrontendController extends \Blog\Controllers\Controller
 {
 	public function listPostsView()
 	{
 		$postManager = new PostManager();
+		
 		$posts = $postManager->getPosts();
-		require('src/view/frontend/listPostsView.php');
+		return $this->twig->render('frontend/listPostsView.twig', array(
+			'posts' => $posts
+		));
 	}
 
 	 public function legalNoticeView()
 	{
-		require('src/view/frontend/legalNoticeView.php');
+		echo $this->twig->render('frontend/legalNoticeView.twig');
 	}
 
 	 public function postView()
@@ -24,21 +32,11 @@ class frontendController
 
 		$post = $postManager->getPost($_GET['id']);
 		$comments = $commentManager->getComments($_GET['id']);
-
-
-		require('src/view/frontend/postView.php');
-	}
-
-	 public function postViewReport()
-	{
-		$postManager = new PostManager();
-		$commentManager = new CommentManager();
-
-		$post = $postManager->getPost($_GET['id']);
-		$comments = $commentManager->getComments($_GET['id']);
-
-
-		require('src/view/frontend/postViewReport.php');
+		
+		return $this->twig->render('frontend/postView.twig', array(
+			'post' => $post,
+			'comments' => $comments,
+		));
 	}
 
 	public function addComment($postId, $pseudo, $content)
@@ -56,19 +54,19 @@ class frontendController
 	}
 	public function reportComment($id, $postid)
 	{
-		$commentManager = new commentManager();
+		$commentManager = new CommentManager();
 		$reportComment = $commentManager->reportCommentPost($_GET['id']);
 		header('location: index.php?action=postView&id=' . $postid.'&report=true');
 	}
 	public function loginView()
 	{
-		require('src/view/frontend/loginView.php');
+		echo $this->twig->render('frontend/loginView.twig');
 	}
 	public function verifyLogin($pseudo, $password)
 	{
-		$membersManager = new membersManager();
-		$getMember = $membersManager->getlogin();
-		if($pseudo == $getMember['pseudo'] && password_verify($password, $getMember['password'])) {
+		$membersManager = new MembersManager();
+		$getMember = $membersManager->getlogin($pseudo, $password);
+		if($getMember) {
 			header('location: index.php?action=listPostsAdmin');
 		}
 		else {

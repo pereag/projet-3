@@ -1,5 +1,8 @@
 <?php
 
+namespace Blog\Models;
+
+
 class Post
 {
 	protected $error = [];
@@ -51,37 +54,40 @@ class Post
 		if (! is_string($content)) {
 			$this->error[] = self::CONTENU_INVALIDE;
 		}
+		else {
+			$this->content = $content;
+		}
 	}
 
-	public function setDatePost(DateTime $datePost)
+	public function setDatePost($datePost)
 	{
 		$this->datePost = $datePost;
 	}
 
 /*-----getters-----*/
 
-	public function error()
+	public function getError()
 	{
-		return $this->$error;
+		return $this->error;
 	}
 
-	public function id()
+	public function getId()
 	{
-		return $this->$id;
+		return $this->id;
 	}
 
-	public function title()
+	public function getTitle()
 	{
-		return $this->$title;
+		return $this->title;
 	}
 
-	public function content()
+	public function getContent()
 	{
-		return $this->$content;
+		return $this->content;
 	}
 
-	public function datePost()
+	public function getDatePost()
 	{
-		return $this->$datePost;
+		return $this->datePost;
 	}
 }

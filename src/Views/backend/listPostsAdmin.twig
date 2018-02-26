@@ -1,0 +1,53 @@
+{% extends 'template.twig' %}
+
+{% block title %}
+	Jean Forteroche | Administration: Tableau de bord
+{% endblock %}
+
+
+{% block content %}
+	<div class="container">
+		<section>
+			<h1>Tableau de bord</h1>
+			<div class="navigation">
+				<div class="row">
+					<div class="col-lg-3 "><h2><a href="index.php?action=listPostsAdmin" class="active">Articles</a> | <a href="index.php?action=listCommentsAdmin">Commentaires<a/></h2></div>
+				</div>
+			</div>
+			<div class="articles_admin">
+				<div class="row">
+						<div class="col-lg-12">
+							<h2>Liste des articles</h2>
+							<hr>
+						</div>
+					</div>
+				{% for post in posts %}
+					<div class="article_admin">
+						<div class="row">
+							<h3 class="col-lg-3"><a href="index.php?action=modifPostAdmin&amp;id={{ post.id }}">{{ post.title }}</a></h3>
+							<div class="description_article_admin">
+								<div class="col-lg-5 col-sm-10">{{ post.content|raw }}...</div>
+							</div>
+							<div class="date_post_admin">
+								<div class="col-lg-1">
+									<p>{{ post.datePost }}</p>
+								</div>
+							</div>
+							<div class="col-lg-3 col-sm-5 col-xs-8">
+								<div class="col-lg-6 col-sm-5 col-xs-5">
+									<a href="index.php?action=modifPostAdmin&amp;id={{ post.id }}" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-pencil"></span><span class="text_button_admin"> modifier</span></a>
+								</div>
+								<div class="button_delete_list-post_admin">
+									<a href="index.php?action=removePostAdmin&amp;id={{ post.id }}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-remove"></span><span class="text_button_admin"> Suprimer</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				<div class="row" id="add_article"> 
+				<a href="index.php?action=newPostAdmin" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span><span class="text_button_admin">Ajouter un article</span></a>
+				</div>
+			</div>
+		</section>
+	</div>
+{% endblock %}

@@ -11,12 +11,20 @@ class ComposerStaticInit278e2dd4a8cbac8b097ab989322d0d98
         array (
             'Twig\\' => 5,
         ),
+        'B' => 
+        array (
+            'Blog\\' => 5,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
+        'Blog\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 

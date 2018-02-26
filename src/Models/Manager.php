@@ -1,4 +1,10 @@
 <?php
+
+namespace Blog\Models;
+
+use \PDO;
+
+
 class Manager
 {
 	protected $db;
