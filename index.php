@@ -69,76 +69,81 @@ try {
 			$frontendController->legalNoticeView();
 		}
 /*------------------------Admin Part------------------------*/
-		elseif ($_GET['action'] == 'listPostsAdmin') {
-			$backendController = new BackendController();
-			echo $backendController->listPostsAdmin();
-		}
-		elseif ($_GET['action'] == 'listCommentsAdmin') {
-			$backendController = new BackendController();
-			echo $backendController->listCommentsAdmin(); 
-		}
-		elseif ($_GET['action'] == 'restoreCommentAdmin') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                	$backendController = new backendController();
-                    $backendController->restoreCommentAdmin($_GET['id']);
-            }
-            else {
-                    throw new Exception('L\'id n\'est pas valide');
-            }               
-        }
-        elseif ($_GET['action'] == 'addPostAdmin') {
-        	if (! empty($_POST['title']) && ! empty($_POST['content'])) {
-              	$backendController = new backendController();
-                $backendController->addPost($_POST['title'], $_POST['content']);
-            }
-            else {
-                throw new Exception('Tous les champs ne sont pas remplis !');
-            }   
-        }
-        elseif ($_GET['action'] == 'removeCommentAdmin') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                	$backendController = new backendController();
-                    $backendController->removeCommentAdmin($_GET['id']);
-            }
-            else {
-                    throw new Exception('L\'id n\'est pas valide');
-            }   
-        }
-        elseif ($_GET['action'] == 'removePostAdmin') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                	$backendController = new backendController();
-                    $backendController->removePostAdmin($_GET['id']);
-            }
-            else {
-                    throw new Exception('L\'id n\'est pas valide');
-            }   
-        }
-		elseif ($_GET['action'] == 'newPostAdmin') {
-			$backendController = new Backendcontroller();
-			echo $backendController->newPostAdmin();
-		}
-		elseif ($_GET['action'] == 'modifPostAdmin') {
-			if (isset($_GET['id']) && $_GET['id'] > 0) {
+		elseif($_SESSION){
+			if ($_GET['action'] == 'listPostsAdmin') {
+				$backendController = new BackendController();
+				echo $backendController->listPostsAdmin();
+			}
+			elseif ($_GET['action'] == 'listCommentsAdmin') {
+				$backendController = new BackendController();
+				echo $backendController->listCommentsAdmin(); 
+			}
+			elseif ($_GET['action'] == 'restoreCommentAdmin') {
+	            if (isset($_GET['id']) && $_GET['id'] > 0) {
+	                	$backendController = new backendController();
+	                    $backendController->restoreCommentAdmin($_GET['id']);
+	            }
+	            else {
+	                    throw new Exception('L\'id n\'est pas valide');
+	            }               
+	        }
+	        elseif ($_GET['action'] == 'addPostAdmin') {
+	        	if (! empty($_POST['title']) && ! empty($_POST['content'])) {
+	              	$backendController = new backendController();
+	                $backendController->addPost($_POST['title'], $_POST['content']);
+	            }
+	            else {
+	                throw new Exception('Tous les champs ne sont pas remplis !');
+	            }   
+	        }
+	        elseif ($_GET['action'] == 'removeCommentAdmin') {
+	            if (isset($_GET['id']) && $_GET['id'] > 0) {
+	                	$backendController = new backendController();
+	                    $backendController->removeCommentAdmin($_GET['id']);
+	            }
+	            else {
+	                    throw new Exception('L\'id n\'est pas valide');
+	            }   
+	        }
+	        elseif ($_GET['action'] == 'removePostAdmin') {
+	            if (isset($_GET['id']) && $_GET['id'] > 0) {
+	                	$backendController = new backendController();
+	                    $backendController->removePostAdmin($_GET['id']);
+	            }
+	            else {
+	                    throw new Exception('L\'id n\'est pas valide');
+	            }   
+	        }
+			elseif ($_GET['action'] == 'newPostAdmin') {
 				$backendController = new Backendcontroller();
-				echo $backendController->modifPostAdmin($_GET['id']);
+				echo $backendController->newPostAdmin();
 			}
-			else {
-				throw new Exception('L\'id du billet est invalide');
-			}
-		}
-		elseif ($_GET['action'] == 'sendModifPostAdmin') {
-			if (isset($_GET['id']) && $_GET['id'] > 0) {
-				if (! empty($_POST['title']) && ! empty($_POST['content'])) {
+			elseif ($_GET['action'] == 'modifPostAdmin') {
+				if (isset($_GET['id']) && $_GET['id'] > 0) {
 					$backendController = new Backendcontroller();
-					$backendController->sendModifPostAdmin($_POST['title'], $_POST['content'], $_GET['id']);
+					echo $backendController->modifPostAdmin($_GET['id']);
 				}
 				else {
-					throw new Exception('Les champs n\'ons pas étais remplis');
+					throw new Exception('L\'id du billet est invalide');
 				}
 			}
-			else {
-				throw new Exception('l\'id du billet est invalide');
+			elseif ($_GET['action'] == 'sendModifPostAdmin') {
+				if (isset($_GET['id']) && $_GET['id'] > 0) {
+					if (! empty($_POST['title']) && ! empty($_POST['content'])) {
+						$backendController = new Backendcontroller();
+						$backendController->sendModifPostAdmin($_POST['title'], $_POST['content'], $_GET['id']);
+					}
+					else {
+						throw new Exception('Les champs n\'ons pas étais remplis');
+					}
+				}
+				else {
+					throw new Exception('L\'id du billet est invalide');
+				}
 			}
+		}
+		else{
+			throw new Exception('La session a expiré');
 		}
 	}
 	else {
