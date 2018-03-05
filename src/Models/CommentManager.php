@@ -6,7 +6,7 @@ use Blog\Models\Manager;
 use \PDO;
 
 
-class CommentManager extends \Blog\Models\Manager
+class CommentManager extends Manager
 {	
 	public function getComments($postId)
 	{
@@ -17,41 +17,45 @@ class CommentManager extends \Blog\Models\Manager
             {
                 $obj[] = new comment($comment);
             }
-            return $obj;
+         return $obj;
 	}
 
 	public function postComment($postId, $pseudo, $content)
     {
-        $db = $this->dbConnect();
-        $comments = $db->prepare('INSERT INTO comments(idPost, pseudo, content, date_comment) VALUES(?, ?, ?, NOW())');
+       
+        $comments = $this->db->prepare('INSERT INTO comments(idPost, pseudo, content, date_comment) VALUES(?, ?, ?, NOW())');
         $affectedLines = $comments->execute(array($postId, $pseudo, $content));
-
         return $affectedLines;
     }
+
     public function reportCommentPost($id)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('UPDATE comments SET report = 1 WHERE id = ?');
         $returnReport = $comments->execute(array($id));
     }
+
     public function returnRestoreCommentAdmin($id)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('UPDATE comments SET report = 0 WHERE id = ?');
         $restore = $comments->execute(array($id));
     }
+
     public function deleteCommentAdmin($id)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('DELETE FROM comments WHERE id = ?');
         $deleteComment = $comments->execute(array($id));
     }
+
      public function deleteEveryComments($id)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('DELETE FROM comments WHERE idPost = ?');
         $deleteComments = $comments->execute(array($id));
     }
+
     public function getCommentsAdmin()
     {
         $db = $this->dbConnect();
@@ -60,7 +64,7 @@ class CommentManager extends \Blog\Models\Manager
             {
                 $obj[] = new comment($comment);
             }
-            return $obj;
+        return $obj;
     }
 
     public function getReportCommentsAdmin()
@@ -71,6 +75,6 @@ class CommentManager extends \Blog\Models\Manager
             {
                 $obj[] = new comment($comment);
             }
-            return $obj;
+        return $obj;
     }
 }

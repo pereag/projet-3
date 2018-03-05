@@ -24,15 +24,13 @@
 		<div class="col-lg-offset-1 col-lg-4">
 			<ul class="list-unstyled">
 				{% if _session.auth is not empty %}
-					<a href="index.php?action=listPostsAdmin"><li>Tableau de bord</li></a><br/>
-
-					deconnexion
+					<li><a href="index.php?action=listPostsAdmin">Tableau de bord</a> | <a href="index.php?action=sessionDestroyAdmin">Déconnexion</a></li><br/>
 				{% else %}
-					<a href="index.php?action=loginView"><li>Espace administration</li></a><br/>
+					<li><a href="index.php?action=loginView">Espace administration</a></li><br/>
 				{% endif %}
 				<li>Copyright © 2018 – Jean Forteroche</li><br/>
 				<li>Tous droits réservés</li><br/>
-				<a href="index.php?action=legalNoticeView"><li>Mentions légales</li></a><br/>
+				<li><a href="index.php?action=legalNoticeView">Mentions légales</a></li><br/>
 			</ul>	
 		</div>
 	</div>	

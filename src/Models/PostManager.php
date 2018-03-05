@@ -6,7 +6,7 @@ use Blog\Models\Manager;
 use \PDO;
 
 
-class PostManager extends \Blog\Models\Manager
+class PostManager extends Manager
 {
 	public function getPosts()
     {
@@ -35,7 +35,7 @@ class PostManager extends \Blog\Models\Manager
             {
                 $obj[] = new Post($post);
             }
-            return $obj; 
+        return $obj; 
     }
    
     public function createPost($title, $content)
@@ -43,17 +43,17 @@ class PostManager extends \Blog\Models\Manager
         $db = $this->dbConnect();
         $post = $db->prepare('INSERT INTO posts( title, content, datePost) VALUES(?, ?,  NOW())');
         $affectedPost = $post->execute(array($title, $content));
-
         return $affectedPost;
     }
+
     public function deletePostAdmin($id)
     {
         $db = $this->dbConnect();
         $post = $db->prepare('DELETE FROM posts WHERE id = ?');
         $deletePost = $post->execute(array($id));
-
         return $deletePost;
     }
+
      public function getModifArticleAdmin($id)
     {
         $db = $this->dbConnect();
@@ -63,15 +63,14 @@ class PostManager extends \Blog\Models\Manager
             {
                 $obj[] = new Post($Post);
             }
-
-        return $Post;
+         return $Post;
     }
+
     public function sendArticleAdmin($title, $content, $id)
     {
         $db = $this->dbConnect();
         $comments = $db->prepare('UPDATE posts SET title = ?, content = ?  WHERE id = ?');
         $returnArticle = $comments->execute(array($title, $content, $id));
-
         return $returnArticle;
     }
 }

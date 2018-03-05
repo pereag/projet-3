@@ -8,19 +8,19 @@ use \Blog\Controllers\Frontend\FrontendController;
 use \Blog\Controllers\Backend\BackendController;
 
 try {
-	if (isset($_GET['action'])) {
+	if (! empty($_GET['action'])) {
 		if ($_GET['action'] == 'listPostsView') {
 			$frontendController = new FrontendController();
 			echo $frontendController->listPostsView();
 		}
-		elseif ($_GET['action'] == 'postView' ) {
+		elseif ($_GET['action'] == 'postView') {
 			if (isset($_GET['id']) && $_GET['id'] > 0 && !isset($_GET['report'])) {
 				$frontendController = new FrontendController();
-				echo $frontendController->postview();
+				echo $frontendController->postView($_GET['id']);
 			}
 			elseif (isset($_GET['id']) && $_GET['id'] > 0 && isset($_GET['report']) && $_GET['report'] = true ) {
 				$frontendController = new FrontendController();
-				echo $frontendController->postview();
+				echo $frontendController->postView();
 			}
 			else {
 				throw new Exception('L\'id du billet est invalide');	
@@ -30,7 +30,7 @@ try {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (! empty($_POST['pseudo']) && ! empty($_POST['content'])) {
                 	$frontendController = new FrontendController();
-                    $frontendController->addComment($_GET['id'], $_POST['pseudo'], $_POST['content']);
+                    $frontendController->addComment(htmlspecialchars($_GET['id']), htmlspecialchars($_POST['pseudo']), htmlspecialchars($_POST['content']));
                 }
                 else {
                     throw new Exception('Tous les champs ne sont pas remplis !');
@@ -53,20 +53,25 @@ try {
         }
 		elseif ($_GET['action'] == 'loginView' ) {
 			$frontendController = new FrontendController();
-			$frontendController->loginView();
+			echo $frontendController->loginView();
 		}
 		elseif ($_GET['action'] == 'verifyLogin' ) {
 			if (! empty($_POST['pseudo']) && ! empty($_POST['password'])) {
 				$frontendController = new FrontendController();
-				$frontendController->verifyLogin($_POST['pseudo'], $_POST['password']);
+				if ($frontendController->verifyLogin($_POST['pseudo'], $_POST['password'])) {
+					header('location: index.php?action=listPostsAdmin');
+				}
+				else {
+					throw new Exception('Identifiant ou mot de pass invalide');
+				}
 			}
 			else {
 				throw new Exception('identifiant manquant');
 			}
 		}
-		elseif ($_GET['action'] == 'legalNoticeView' ) {
+		elseif ($_GET['action'] == 'legalNoticeView') {
 			$frontendController = new FrontendController();
-			$frontendController->legalNoticeView();
+			echo $frontendController->legalNoticeView();
 		}
 /*------------------------Admin Part------------------------*/
 		elseif($_SESSION){
@@ -115,12 +120,12 @@ try {
 	            }   
 	        }
 			elseif ($_GET['action'] == 'newPostAdmin') {
-				$backendController = new Backendcontroller();
+				$backendController = new BackendController();
 				echo $backendController->newPostAdmin();
 			}
 			elseif ($_GET['action'] == 'modifPostAdmin') {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
-					$backendController = new Backendcontroller();
+					$backendController = new BackendController();
 					echo $backendController->modifPostAdmin($_GET['id']);
 				}
 				else {
@@ -130,7 +135,7 @@ try {
 			elseif ($_GET['action'] == 'sendModifPostAdmin') {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
 					if (! empty($_POST['title']) && ! empty($_POST['content'])) {
-						$backendController = new Backendcontroller();
+						$backendController = new BackendController();
 						$backendController->sendModifPostAdmin($_POST['title'], $_POST['content'], $_GET['id']);
 					}
 					else {
@@ -140,6 +145,14 @@ try {
 				else {
 					throw new Exception('L\'id du billet est invalide');
 				}
+			}
+			elseif ($_GET['action'] == 'sessionDestroyAdmin') {
+				$backendController = new BackendController();
+				$backendController->sessionDestroyAdmin();
+				header('location: index.php');
+			}
+			else {
+				throw new Exception('La page n\'existe pas');
 			}
 		}
 		else{

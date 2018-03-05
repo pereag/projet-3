@@ -152,7 +152,12 @@
 		position: absolute;
 		left: 0; right: 0; bottom:0;
 	}
-	footer li {
+	footer li  {
+		color:#7c7668;
+		font-family:'Lucida Sans Unicode';
+		font-size: 1.1em;
+	}
+	footer li a {
 		color:#7c7668;
 		font-family:'Lucida Sans Unicode';
 		font-size: 1.1em;

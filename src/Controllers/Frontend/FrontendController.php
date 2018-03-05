@@ -20,22 +20,19 @@ class FrontendController extends \Blog\Controllers\Controller
 		));
 	}
 
-	 public function legalNoticeView()
+	public function legalNoticeView()
 	{
-		echo $this->twig->render('frontend/legalNoticeView.twig');
+		return $this->twig->render('frontend/legalNoticeView.twig');
 	}
 
-	 public function postView()
+	public function postView($id)
 	{
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
-
-		$post = $postManager->getPost($_GET['id']);
-		$comments = $commentManager->getComments($_GET['id']);
 		
 		return $this->twig->render('frontend/postView.twig', array(
-			'post' => $post,
-			'comments' => $comments,
+			'post' => $postManager->getPost($id),
+			'comments' => $commentManager->getComments($id),
 		));
 	}
 
@@ -52,25 +49,29 @@ class FrontendController extends \Blog\Controllers\Controller
 	        header('Location: index.php?action=postView&id=' . $postId);
 	    }
 	}
+
 	public function reportComment($id, $postid)
 	{
 		$commentManager = new CommentManager();
+		
 		$reportComment = $commentManager->reportCommentPost($_GET['id']);
 		header('location: index.php?action=postView&id=' . $postid.'&report=true');
 	}
+
 	public function loginView()
 	{
-		echo $this->twig->render('frontend/loginView.twig');
+		return $this->twig->render('frontend/loginView.twig');
 	}
+
 	public function verifyLogin($pseudo, $password)
 	{
 		$membersManager = new MembersManager();
-		$getMember = $membersManager->getlogin($pseudo, $password);
-		if($getMember) {
+		return $membersManager->getlogin($pseudo, $password);
+		/* if($getMember) {
 			header('location: index.php?action=listPostsAdmin');
 		}
 		else {
 			throw new Exception('Identifiant ou mot de pass invalide');
-		} 
+		} */
 	}
 }

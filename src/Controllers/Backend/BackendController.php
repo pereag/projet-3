@@ -5,7 +5,7 @@ namespace Blog\Controllers\Backend;
 
 use Blog\Models\PostManager;
 use Blog\Models\CommentManager;
-
+use \Exception;
 class BackendController extends \Blog\Controllers\Controller
 {
 	public function listPostsAdmin()
@@ -17,10 +17,12 @@ class BackendController extends \Blog\Controllers\Controller
 			'posts' => $posts,
 		));
 	}
+
 	public function newPostAdmin()
 	{
 		return $this->twig->render('backend/newPostAdmin.twig');
 	}
+
 	public function listCommentsAdmin()
 	{
 		$commentManager = new commentManager();
@@ -31,6 +33,7 @@ class BackendController extends \Blog\Controllers\Controller
 			'commentsReport' => $commentsReport,
 		));
 	}
+
 	public function addPost($title, $content)
 	{
 	    $postManager = new postManager();
@@ -44,18 +47,21 @@ class BackendController extends \Blog\Controllers\Controller
 	        header('Location: index.php?action=listPostsAdmin');
 	    }
 	}
+
 	public function restoreCommentAdmin($id)
 	{
 		$commentManager = new commentManager();
 		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin($_GET['id']);
 		header('location: index.php?action=listCommentsAdmin');
 	}
+
 	public function removeCommentAdmin($id)
 	{
 		$commentManager = new commentManager();
 		$removeComment = $commentManager->deleteCommentAdmin($_GET['id']);
 		header('location: index.php?action=listCommentsAdmin');
 	}
+
 	public function removePostAdmin($id)
 	{
 		$postManager = new postManager();
@@ -64,6 +70,7 @@ class BackendController extends \Blog\Controllers\Controller
 		$removecommentspost = $commentManager->deleteEveryComments($_GET['id']);
 		header('location: index.php?action=listPostsAdmin');
 	}
+
 	public function modifPostAdmin($id)
 	{
 		$postManager = new postManager();
@@ -72,11 +79,17 @@ class BackendController extends \Blog\Controllers\Controller
 			'modifPost' => $modifPost,
 		));
 	}
+
 	public function sendModifPostAdmin($title, $content, $id)
 	{
 		$postManager = new postManager();
 		$modifPost = $postManager->sendArticleAdmin($title, $content, $_GET['id']);
 		header('location: index.php?action=listPostsAdmin');
+	}
+
+	public function sessionDestroyAdmin()
+	{
+		session_destroy();
 	}
 }
 
