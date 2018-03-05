@@ -13,7 +13,7 @@
 <body>
 	<header class="row">
 	<div class ="col-lg-9">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">	
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-5">	
 			<a href="index.php?action=listPostsView"><img src="public/picture/logo_jean.png"></a>
 		</div>
 	</div>
@@ -23,7 +23,13 @@
 	<div class="col-lg-12" id="administration_space">
 		<div class="col-lg-offset-1 col-lg-4">
 			<ul class="list-unstyled">
-				<a href="index.php?action=loginView"><li>Espace administration</li></a><br/> 
+				{% if _session.auth is not empty %}
+					<a href="index.php?action=listPostsAdmin"><li>Tableau de bord</li></a><br/>
+
+					deconnexion
+				{% else %}
+					<a href="index.php?action=loginView"><li>Espace administration</li></a><br/>
+				{% endif %}
 				<li>Copyright © 2018 – Jean Forteroche</li><br/>
 				<li>Tous droits réservés</li><br/>
 				<a href="index.php?action=legalNoticeView"><li>Mentions légales</li></a><br/>
