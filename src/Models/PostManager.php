@@ -43,7 +43,7 @@ class PostManager extends Manager
         $db = $this->dbConnect();
         $post = $db->prepare('INSERT INTO posts( title, content, datePost) VALUES(?, ?,  NOW())');
         $affectedPost = $post->execute(array($title, $content));
-        return $affectedPost;
+    return $affectedPost;
     }
 
     public function deletePostAdmin($id)

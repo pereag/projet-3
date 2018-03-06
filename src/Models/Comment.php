@@ -29,7 +29,7 @@ class Comment
 		foreach ($data as $attribut => $value) {
 			$method = 'set'.ucfirst($attribut);
 
-			if(is_callable([$this, $method])) {
+			if (is_callable([$this, $method])) {
 				$this->$method($value);
 			}
 		}
@@ -49,8 +49,7 @@ class Comment
 	{
 		if($report == 1) {
 			$this->report = (int) $report;	
-		}
-		else {
+		} else {
 			$this->error[] = self::REPORT_INVALIDE;
 		}
 	}
@@ -59,8 +58,7 @@ class Comment
 	{
 		if (! is_string($pseudo) && empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
-		}
-		else {
+		} else {
 			$this->pseudo = $pseudo;
 		}
 	}
@@ -69,8 +67,7 @@ class Comment
 	{
 		if (! is_string($content) && empty($content)) {
 			$this->error[] = self::CONTENT_INVALIDE;
-		}
-		else {
+		} else {
 			$this->content = $content;
 		}
 	}

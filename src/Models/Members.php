@@ -43,8 +43,7 @@ class Members
 	{
 		if (! is_string($pseudo) and empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
-		}
-		else {
+		} else {
 			$this->pseudo = $title;
 		}
 	}

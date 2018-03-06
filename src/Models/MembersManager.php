@@ -16,8 +16,7 @@ class MembersManager extends Manager
         if($pseudo == $getMember['pseudo'] && password_verify($password, $getMember['password'])) {
             $_SESSION['auth'] = $pseudo;
             return true;
-        }
-        else {
+        } else {
             return false;
         } 
 	}

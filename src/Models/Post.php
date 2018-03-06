@@ -43,8 +43,7 @@ class Post
 	{
 		if (! is_string($title) and empty($title)) {
 			$this->error[] = self::TITRE_INVALIDE;
-		}
-		else {
+		} else {
 			$this->title = $title;
 		}
 	}
@@ -53,8 +52,7 @@ class Post
 	{
 		if (! is_string($content)) {
 			$this->error[] = self::CONTENU_INVALIDE;
-		}
-		else {
+		} else {
 			$this->content = $content;
 		}
 	}

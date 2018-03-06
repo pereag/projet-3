@@ -42,8 +42,7 @@ class BackendController extends \Blog\Controllers\Controller
 
 	    if ($affectedLines === false) {
 	        throw new Exception('Impossible d\'ajouter l\'article les champs ne sont pas tous remplis');
-	    }
-	    else {
+	    } else {
 	        header('Location: index.php?action=listPostsAdmin');
 	    }
 	}

@@ -44,8 +44,7 @@ class FrontendController extends \Blog\Controllers\Controller
 
 	    if ($affectedPost === false) {
 	        throw new Exception('Impossible d\'ajouter le commentaire !');
-	    }
-	    else {
+	    } else {
 	        header('Location: index.php?action=postView&id=' . $postId);
 	    }
 	}
