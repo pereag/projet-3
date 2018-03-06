@@ -8,8 +8,7 @@ class MembersManager extends Manager
 {
     public function getLogin($pseudo, $password)
 	{
-        $db = $this->dbConnect();
-        $req = $db->prepare('SELECT pseudo, password FROM members WHERE pseudo = ?');
+        $req = $this->db->prepare('SELECT pseudo, password FROM members WHERE pseudo = ?');
         $req->execute(array($pseudo));
         $getMember = $req->fetch(\PDO::FETCH_ASSOC);
 
