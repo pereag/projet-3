@@ -35,7 +35,7 @@ try {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
             	if (isset($_GET['postid']) && $_GET['postid'] > 0) {
                 	$frontendController = new FrontendController();
-                    $frontendController->reportComment($_GET['id'],$_GET['postid']);
+                    $frontendController->reportComment(htmlspecialchars($_GET['id']), htmlspecialchars($_GET['postid']));
                 } else { 
                 	throw new Exception('L\'id de l\'article n\'est pas valide');
                 }
@@ -48,7 +48,7 @@ try {
 		} elseif ($_GET['action'] == 'verifyLogin' ) {
 			if (! empty($_POST['pseudo']) && ! empty($_POST['password'])) {
 				$frontendController = new FrontendController();
-				if ($frontendController->verifyLogin($_POST['pseudo'], $_POST['password'])) {
+				if ($frontendController->verifyLogin(htmlspecialchars($_POST['pseudo']), htmlspecialchars($_POST['password']))) {
 					header('location: index.php?action=listPostsAdmin');
 				} else {
 					throw new Exception('Identifiant ou mot de pass invalide');
@@ -71,41 +71,38 @@ try {
 			} elseif ($_GET['action'] == 'restoreCommentAdmin') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
 	                	$backendController = new backendController();
-	                    $backendController->restoreCommentAdmin($_GET['id']);
+	                    $backendController->restoreCommentAdmin(htmlspecialchars($_GET['id']));
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }               
-	        }
-	        elseif ($_GET['action'] == 'addPostAdmin') {
+	        } elseif ($_GET['action'] == 'addPostAdmin') {
 	        	if (! empty($_POST['title']) && ! empty($_POST['content'])) {
 	              	$backendController = new backendController();
-	                $backendController->addPost($_POST['title'], $_POST['content']);
+	                $backendController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']));
 	            } else {
 	                throw new Exception('Tous les champs ne sont pas remplis !');
 	            }   
 	        } elseif ($_GET['action'] == 'removeCommentAdmin') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
 	                	$backendController = new backendController();
-	                    $backendController->removeCommentAdmin($_GET['id']);
+	                    $backendController->removeCommentAdmin(htmlspecialchars($_GET['id']));
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }   
 	        } elseif ($_GET['action'] == 'removePostAdmin') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
 	                	$backendController = new backendController();
-	                    $backendController->removePostAdmin($_GET['id']);
+	                    $backendController->removePostAdmin(htmlspecialchars($_GET['id']));
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }   
-	        }
-			elseif ($_GET['action'] == 'newPostAdmin') {
+	        } elseif ($_GET['action'] == 'newPostAdmin') {
 				$backendController = new BackendController();
 				echo $backendController->newPostAdmin();
-			}
-			elseif ($_GET['action'] == 'modifPostAdmin') {
+			} elseif ($_GET['action'] == 'modifPostAdmin') {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
 					$backendController = new BackendController();
-					echo $backendController->modifPostAdmin($_GET['id']);
+					echo $backendController->modifPostAdmin(htmlspecialchars($_GET['id']));
 				} else {
 					throw new Exception('L\'id du billet est invalide');
 				}
@@ -113,7 +110,7 @@ try {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
 					if (! empty($_POST['title']) && ! empty($_POST['content'])) {
 						$backendController = new BackendController();
-						$backendController->sendModifPostAdmin($_POST['title'], $_POST['content'], $_GET['id']);
+						$backendController->sendModifPostAdmin(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']), htmlspecialchars($_GET['id']));
 					} else {
 						throw new Exception('Les champs n\'ons pas étais remplis');
 					}

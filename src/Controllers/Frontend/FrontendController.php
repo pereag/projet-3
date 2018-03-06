@@ -16,7 +16,7 @@ class FrontendController extends \Blog\Controllers\Controller
 		
 		$posts = $postManager->getPosts();
 		return $this->twig->render('frontend/listPostsView.twig', array(
-			'posts' => $posts
+			'posts' => $postManager->getPosts()
 		));
 	}
 
@@ -31,8 +31,8 @@ class FrontendController extends \Blog\Controllers\Controller
 		$commentManager = new CommentManager();
 		
 		return $this->twig->render('frontend/postView.twig', array(
-			'post' => $postManager->getPost($id),
-			'comments' => $commentManager->getComments($id),
+			'post' => $postManager->getPost(htmlspecialchars($id)),
+			'comments' => $commentManager->getComments(htmlspecialchars($id)),
 		));
 	}
 
@@ -40,7 +40,7 @@ class FrontendController extends \Blog\Controllers\Controller
 	{
 	    $commentManager = new CommentManager();
 
-	    $affectedPost = $commentManager->postComment($postId, $pseudo, $content);
+	    $affectedPost = $commentManager->postComment(htmlspecialchars($postId), htmlspecialchars($pseudo), htmlspecialchars($content));
 
 	    if ($affectedPost === false) {
 	        throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -53,7 +53,7 @@ class FrontendController extends \Blog\Controllers\Controller
 	{
 		$commentManager = new CommentManager();
 		
-		$reportComment = $commentManager->reportCommentPost($_GET['id']);
+		$reportComment = $commentManager->reportCommentPost(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=postView&id=' . $postid.'&report=true');
 	}
 
@@ -65,7 +65,7 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function verifyLogin($pseudo, $password)
 	{
 		$membersManager = new MembersManager();
-		return $membersManager->getlogin($pseudo, $password);
+		return $membersManager->getlogin(htmlspecialchars($pseudo), htmlspecialchars($password));
 		/* if($getMember) {
 			header('location: index.php?action=listPostsAdmin');
 		}

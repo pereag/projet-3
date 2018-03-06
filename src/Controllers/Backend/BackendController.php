@@ -38,7 +38,7 @@ class BackendController extends \Blog\Controllers\Controller
 	{
 	    $postManager = new postManager();
 
-	    $newPost = $postManager->createPost($title, $content);
+	    $newPost = $postManager->createPost(htmlspecialchars($title), htmlspecialchars($content));
 
 	    if ($affectedLines === false) {
 	        throw new Exception('Impossible d\'ajouter l\'article les champs ne sont pas tous remplis');
@@ -50,14 +50,14 @@ class BackendController extends \Blog\Controllers\Controller
 	public function restoreCommentAdmin($id)
 	{
 		$commentManager = new commentManager();
-		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin($_GET['id']);
+		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listCommentsAdmin');
 	}
 
 	public function removeCommentAdmin($id)
 	{
 		$commentManager = new commentManager();
-		$removeComment = $commentManager->deleteCommentAdmin($_GET['id']);
+		$removeComment = $commentManager->deleteCommentAdmin(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listCommentsAdmin');
 	}
 
@@ -65,15 +65,15 @@ class BackendController extends \Blog\Controllers\Controller
 	{
 		$postManager = new postManager();
 		$commentManager = new commentManager();
-		$removePost = $postManager->deletePostAdmin($_GET['id']);
-		$removecommentspost = $commentManager->deleteEveryComments($_GET['id']);
+		$removePost = $postManager->deletePostAdmin(htmlspecialchars($_GET['id']));
+		$removecommentspost = $commentManager->deleteEveryComments(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listPostsAdmin');
 	}
 
 	public function modifPostAdmin($id)
 	{
 		$postManager = new postManager();
-		$modifPost = $postManager->getModifArticleAdmin($_GET['id']);
+		$modifPost = $postManager->getModifArticleAdmin(htmlspecialchars($_GET['id']));
 		return $this->twig->render('backend/modifPostAdmin.twig', array(
 			'modifPost' => $modifPost,
 		));
@@ -82,7 +82,7 @@ class BackendController extends \Blog\Controllers\Controller
 	public function sendModifPostAdmin($title, $content, $id)
 	{
 		$postManager = new postManager();
-		$modifPost = $postManager->sendArticleAdmin($title, $content, $_GET['id']);
+		$modifPost = $postManager->sendArticleAdmin(htmlspecialchars($title), htmlspecialchars($content), htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listPostsAdmin');
 	}
 
