@@ -78,7 +78,7 @@ try {
 	        } elseif ($_GET['action'] == 'addPostAdmin') {
 	        	if (! empty($_POST['title']) && ! empty($_POST['content'])) {
 	              	$backendController = new backendController();
-	                $backendController->addPost(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']));
+	                $backendController->addPost(htmlspecialchars($_POST['title']), $_POST['content']);
 	            } else {
 	                throw new Exception('Tous les champs ne sont pas remplis !');
 	            }   
@@ -110,7 +110,7 @@ try {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
 					if (! empty($_POST['title']) && ! empty($_POST['content'])) {
 						$backendController = new BackendController();
-						$backendController->sendModifPostAdmin(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']), htmlspecialchars($_GET['id']));
+						$backendController->sendModifPostAdmin(htmlspecialchars($_POST['title']), $_POST['content'], htmlspecialchars($_GET['id']));
 					} else {
 						throw new Exception('Les champs n\'ons pas étais remplis');
 					}

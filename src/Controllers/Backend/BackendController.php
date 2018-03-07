@@ -11,10 +11,8 @@ class BackendController extends \Blog\Controllers\Controller
 	public function listPostsAdmin()
 	{
 		$postManager = new PostManager();
-
-		$posts = $postManager->getPostsAdmin();
 		return $this->twig->render('backend/listPostsAdmin.twig', array(
-			'posts' => $posts,
+			'posts' => $postManager->getPostsAdmin()
 		));
 	}
 
@@ -26,21 +24,17 @@ class BackendController extends \Blog\Controllers\Controller
 	public function listCommentsAdmin()
 	{
 		$commentManager = new commentManager();
-		$comments = $commentManager->getCommentsAdmin();
-		$commentsReport = $commentManager->getReportCommentsAdmin();
 		return $this->twig->render('backend/listCommentsAdmin.twig',array(
-			'comments' => $comments,
-			'commentsReport' => $commentsReport,
+			'comments' => $commentManager->getCommentsAdmin(),
+			'commentsReport' => $commentManager->getReportCommentsAdmin()
 		));
 	}
 
 	public function addPost($title, $content)
 	{
 	    $postManager = new postManager();
-
-	    $newPost = $postManager->createPost(htmlspecialchars($title), htmlspecialchars($content));
-
-	    if ($affectedLines === false) {
+		 $newPost = $postManager->createPost(htmlspecialchars($title), $content);
+		if ($affectedLines === false) {
 	        throw new Exception('Impossible d\'ajouter l\'article les champs ne sont pas tous remplis');
 	    } else {
 	        header('Location: index.php?action=listPostsAdmin');
@@ -73,16 +67,15 @@ class BackendController extends \Blog\Controllers\Controller
 	public function modifPostAdmin($id)
 	{
 		$postManager = new postManager();
-		$modifPost = $postManager->getModifArticleAdmin(htmlspecialchars($_GET['id']));
 		return $this->twig->render('backend/modifPostAdmin.twig', array(
-			'modifPost' => $modifPost,
+			'modifPost' => $postManager->getModifArticleAdmin(htmlspecialchars($_GET['id']))
 		));
 	}
 
 	public function sendModifPostAdmin($title, $content, $id)
 	{
 		$postManager = new postManager();
-		$modifPost = $postManager->sendArticleAdmin(htmlspecialchars($title), htmlspecialchars($content), htmlspecialchars($_GET['id']));
+		$modifPost = $postManager->sendArticleAdmin(htmlspecialchars($title), $content, htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listPostsAdmin');
 	}
 

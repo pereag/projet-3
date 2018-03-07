@@ -29,7 +29,6 @@ class FrontendController extends \Blog\Controllers\Controller
 	{
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
-		
 		return $this->twig->render('frontend/postView.twig', array(
 			'post' => $postManager->getPost(htmlspecialchars($id)),
 			'comments' => $commentManager->getComments(htmlspecialchars($id)),
@@ -39,10 +38,8 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function addComment($postId, $pseudo, $content)
 	{
 	    $commentManager = new CommentManager();
-
-	    $affectedPost = $commentManager->postComment(htmlspecialchars($postId), htmlspecialchars($pseudo), htmlspecialchars($content));
-
-	    if ($affectedPost === false) {
+		$affectedPost = $commentManager->postComment(htmlspecialchars($postId), htmlspecialchars($pseudo), htmlspecialchars($content));
+		if ($affectedPost === false) {
 	        throw new Exception('Impossible d\'ajouter le commentaire !');
 	    } else {
 	        header('Location: index.php?action=postView&id=' . $postId);
@@ -52,7 +49,6 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function reportComment($id, $postid)
 	{
 		$commentManager = new CommentManager();
-		
 		$reportComment = $commentManager->reportCommentPost(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=postView&id=' . $postid.'&report=true');
 	}
