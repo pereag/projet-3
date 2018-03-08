@@ -22,7 +22,7 @@ try {
 			} else {
 				throw new Exception('L\'id du billet est invalide');	
 			}
-		} elseif ($_GET['action'] == 'addCommentView') {
+		} elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 if (! empty($_POST['pseudo']) && ! empty($_POST['content'])) {
                 	$frontendController = new FrontendController();
@@ -68,14 +68,14 @@ try {
 			} elseif ($_GET['action'] == 'listCommentsAdmin') {
 				$backendController = new BackendController();
 				echo $backendController->listCommentsAdmin(); 
-			} elseif ($_GET['action'] == 'restoreCommentAdmin') {
+			} elseif ($_GET['action'] == 'restoreComment') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
 	                	$backendController = new backendController();
-	                    $backendController->restoreCommentAdmin(htmlspecialchars($_GET['id']));
+	                    $backendController->restoreComment(htmlspecialchars($_GET['id']));
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }               
-	        } elseif ($_GET['action'] == 'addPostAdmin') {
+	        } elseif ($_GET['action'] == 'addPost') {
 	        	if (! empty($_POST['title']) && ! empty($_POST['content'])) {
 	              	$backendController = new backendController();
 	                $backendController->addPost(htmlspecialchars($_POST['title']), $_POST['content']);
@@ -89,10 +89,10 @@ try {
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }   
-	        } elseif ($_GET['action'] == 'removePostAdmin') {
+	        } elseif ($_GET['action'] == 'removePost') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
 	                	$backendController = new backendController();
-	                    $backendController->removePostAdmin(htmlspecialchars($_GET['id']));
+	                    $backendController->removePost(htmlspecialchars($_GET['id']));
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }   
@@ -110,16 +110,16 @@ try {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
 					if (! empty($_POST['title']) && ! empty($_POST['content'])) {
 						$backendController = new BackendController();
-						$backendController->sendModifPostAdmin(htmlspecialchars($_POST['title']), $_POST['content'], htmlspecialchars($_GET['id']));
+						$backendController->sendModifPost(htmlspecialchars($_POST['title']), $_POST['content'], htmlspecialchars($_GET['id']));
 					} else {
 						throw new Exception('Les champs n\'ons pas étais remplis');
 					}
 				} else {
 					throw new Exception('L\'id du billet est invalide');
 				}
-			} elseif ($_GET['action'] == 'sessionDestroyAdmin') {
+			} elseif ($_GET['action'] == 'sessionDestroy') {
 				$backendController = new BackendController();
-				$backendController->sessionDestroyAdmin();
+				$backendController->sessionDestroy();
 				header('location: index.php');
 			}
 		} else {

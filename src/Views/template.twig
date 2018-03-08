@@ -24,7 +24,7 @@
 		<div class="col-lg-offset-1 col-lg-4">
 			<ul class="list-unstyled">
 				{% if _session.auth is not empty %}
-					<li><a href="index.php?action=listPostsAdmin">Tableau de bord</a> | <a href="index.php?action=sessionDestroyAdmin">Déconnexion</a></li><br/>
+					<li><a href="index.php?action=listPostsAdmin">Tableau de bord</a> | <a href="index.php?action=sessionDestroy">Déconnexion</a></li><br/>
 				{% else %}
 					<li><a href="index.php?action=loginView">Espace administration</a></li><br/>
 				{% endif %}

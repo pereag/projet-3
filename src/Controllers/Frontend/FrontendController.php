@@ -50,7 +50,7 @@ class FrontendController extends \Blog\Controllers\Controller
 	{
 		$commentManager = new CommentManager();
 		$reportComment = $commentManager->reportCommentPost(htmlspecialchars($_GET['id']));
-		header('location: index.php?action=postView&id=' . $postid.'&report=true');
+		header('location: index.php?action=postView&id=' . $postid);
 	}
 
 	public function loginView()

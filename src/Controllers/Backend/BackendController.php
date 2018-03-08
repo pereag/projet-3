@@ -41,21 +41,21 @@ class BackendController extends \Blog\Controllers\Controller
 	    }
 	}
 
-	public function restoreCommentAdmin($id)
+	public function restoreComment($id)
 	{
 		$commentManager = new commentManager();
 		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listCommentsAdmin');
 	}
 
-	public function removeCommentAdmin($id)
+	public function removeComment($id)
 	{
 		$commentManager = new commentManager();
 		$removeComment = $commentManager->deleteCommentAdmin(htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listCommentsAdmin');
 	}
 
-	public function removePostAdmin($id)
+	public function removePost($id)
 	{
 		$postManager = new postManager();
 		$commentManager = new commentManager();
@@ -72,14 +72,14 @@ class BackendController extends \Blog\Controllers\Controller
 		));
 	}
 
-	public function sendModifPostAdmin($title, $content, $id)
+	public function sendModifPost($title, $content, $id)
 	{
 		$postManager = new postManager();
 		$modifPost = $postManager->sendArticleAdmin(htmlspecialchars($title), $content, htmlspecialchars($_GET['id']));
 		header('location: index.php?action=listPostsAdmin');
 	}
 
-	public function sessionDestroyAdmin()
+	public function sessionDestroy()
 	{
 		session_destroy();
 	}
