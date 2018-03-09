@@ -38,19 +38,13 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function addComment($postId, $pseudo, $content)
 	{
 	    $commentManager = new CommentManager();
-		$affectedPost = $commentManager->postComment(htmlspecialchars($postId), htmlspecialchars($pseudo), htmlspecialchars($content));
-		if ($affectedPost === false) {
-	        throw new Exception('Impossible d\'ajouter le commentaire !');
-	    } else {
-	        header('Location: index.php?action=postView&id=' . $postId);
-	    }
+		return $affectedPost = $commentManager->postComment(htmlspecialchars($postId), htmlspecialchars($pseudo), htmlspecialchars($content));
 	}
 
-	public function reportComment($id, $postid)
+	public function reportComment($id)
 	{
 		$commentManager = new CommentManager();
 		$reportComment = $commentManager->reportCommentPost(htmlspecialchars($_GET['id']));
-		header('location: index.php?action=postView&id=' . $postid);
 	}
 
 	public function loginView()
@@ -62,11 +56,5 @@ class FrontendController extends \Blog\Controllers\Controller
 	{
 		$membersManager = new MembersManager();
 		return $membersManager->getlogin(htmlspecialchars($pseudo), htmlspecialchars($password));
-		/* if($getMember) {
-			header('location: index.php?action=listPostsAdmin');
-		}
-		else {
-			throw new Exception('Identifiant ou mot de pass invalide');
-		} */
 	}
 }

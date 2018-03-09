@@ -28,31 +28,25 @@ class BackendController extends \Blog\Controllers\Controller
 			'comments' => $commentManager->getCommentsAdmin(),
 			'commentsReport' => $commentManager->getReportCommentsAdmin()
 		));
+
 	}
 
 	public function addPost($title, $content)
 	{
 	    $postManager = new postManager();
-		 $newPost = $postManager->createPost(htmlspecialchars($title), $content);
-		if ($affectedLines === false) {
-	        throw new Exception('Impossible d\'ajouter l\'article les champs ne sont pas tous remplis');
-	    } else {
-	        header('Location: index.php?action=listPostsAdmin');
-	    }
+		 $newPost = $postManager->createPostAdmin(htmlspecialchars($title), $content);
 	}
 
 	public function restoreComment($id)
 	{
 		$commentManager = new commentManager();
 		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin(htmlspecialchars($_GET['id']));
-		header('location: index.php?action=listCommentsAdmin');
 	}
 
 	public function removeComment($id)
 	{
 		$commentManager = new commentManager();
 		$removeComment = $commentManager->deleteCommentAdmin(htmlspecialchars($_GET['id']));
-		header('location: index.php?action=listCommentsAdmin');
 	}
 
 	public function removePost($id)
@@ -60,8 +54,7 @@ class BackendController extends \Blog\Controllers\Controller
 		$postManager = new postManager();
 		$commentManager = new commentManager();
 		$removePost = $postManager->deletePostAdmin(htmlspecialchars($_GET['id']));
-		$removecommentspost = $commentManager->deleteEveryComments(htmlspecialchars($_GET['id']));
-		header('location: index.php?action=listPostsAdmin');
+		$removecommentspost = $commentManager->deleteEveryCommentsAdmin(htmlspecialchars($_GET['id']));
 	}
 
 	public function modifPostAdmin($id)
@@ -76,7 +69,6 @@ class BackendController extends \Blog\Controllers\Controller
 	{
 		$postManager = new postManager();
 		$modifPost = $postManager->sendArticleAdmin(htmlspecialchars($title), $content, htmlspecialchars($_GET['id']));
-		header('location: index.php?action=listPostsAdmin');
 	}
 
 	public function sessionDestroy()

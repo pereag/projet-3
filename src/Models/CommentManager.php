@@ -12,11 +12,16 @@ class CommentManager extends Manager
 	{
         $req = $this->db->prepare('SELECT id, pseudo, idPost, content, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%imin\') AS dateComment FROM comments WHERE idPost = ? ORDER BY dateComment DESC');
         $req->execute(array($postId));
-        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $comment)
-            {
-                $obj[] = new comment($comment);
-            }
-         return $obj;
+        $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!$aResp) {
+            $obj = [];
+        } else {
+        foreach ($aResp as $comment) {
+            $obj[] = new comment($comment);
+         }
+     }
+
+     return $obj;
 	}
 
 	public function postComment($postId, $pseudo, $content)
@@ -44,7 +49,7 @@ class CommentManager extends Manager
         $deleteComment = $comments->execute(array($id));
     }
 
-     public function deleteEveryComments($id)
+     public function deleteEveryCommentsAdmin($id)
     {
         $comments = $this->db->prepare('DELETE FROM comments WHERE idPost = ?');
         $deleteComments = $comments->execute(array($id));
@@ -53,20 +58,30 @@ class CommentManager extends Manager
     public function getCommentsAdmin()
     {
         $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 0 ORDER BY idPost DESC');
-        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $comment)
-            {
-                $obj[] = new comment($comment);
-            }
-        return $obj;
+        $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!$aResp) {
+            $obj = [];
+        } else {
+        foreach ($aResp as $comment) {
+            $obj[] = new comment($comment);
+         }
+     }
+
+     return $obj;
     }
 
     public function getReportCommentsAdmin()
     {
         $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 1 ORDER BY idPost DESC');
-        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $comment)
-            {
-                $obj[] = new comment($comment);
-            }
-        return $obj;
+        $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!$aResp) {
+            $obj = [];
+        } else {
+        foreach ($aResp as $comment) {
+            $obj[] = new comment($comment);
+         }
+     }
+
+     return $obj;
     }
 }

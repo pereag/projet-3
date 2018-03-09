@@ -218,6 +218,9 @@
 	.boutton_save_new_article {
 		margin-top:15px;
 	}
+	#textarea {
+		height:250px;
+	}
 /*------ Comments admin --------*/
 	 .comments_admin {
 		background-color:#373231;

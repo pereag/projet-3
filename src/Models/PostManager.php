@@ -10,11 +10,16 @@ class PostManager extends Manager
 {
 	public function getPosts()
     {
-        $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,350) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY id DESC');
-        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $post)
-            {
-                $obj[] = new Post($post);
+        $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,350) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost');
+        $aresp = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!$aresp) {
+            $obj = [];
+        }
+        else {
+            foreach ($aresp as $post) {
+                $obj[] = new post($post);
             }
+        }
         return $obj; 
     }
 
@@ -28,14 +33,19 @@ class PostManager extends Manager
     public function getPostsAdmin()
     {
         $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,116) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost DESC');
-        foreach ($req->fetchAll(PDO::FETCH_ASSOC) as $post)
-            {
-                $obj[] = new Post($post);
+         $aresp = $req->fetchAll(PDO::FETCH_ASSOC);
+        if (!$aresp) {
+            $obj = [];
+        }
+        else {
+            foreach ($aresp as $post) {
+                $obj[] = new post($post);
             }
-        return $obj; 
+        }
+        return $obj;
     }
    
-    public function createPost($title, $content)
+    public function createPostAdmin($title, $content)
     {
         $post = $this->db->prepare('INSERT INTO posts( title, content, datePost) VALUES(?, ?,  NOW())');
         $affectedPost = $post->execute(array($title, $content));
@@ -51,13 +61,9 @@ class PostManager extends Manager
 
      public function getModifArticleAdmin($id)
     {
-        $post = $this->db->prepare('SELECT id, title, content FROM posts WHERE id = ?');
-        $post->execute(array($id));
-        foreach ($post->fetchAll(PDO::FETCH_ASSOC) as $Post)
-            {
-                $obj[] = new Post($Post);
-            }
-         return $Post;
+        $req = $this->db->prepare('SELECT id, title, content FROM posts WHERE id = ?');
+        $req->execute(array($id));
+        return new Post($req->fetch(PDO::FETCH_ASSOC));
     }
 
     public function sendArticleAdmin($title, $content, $id)
