@@ -17,7 +17,7 @@ class CommentManager extends Manager
             $obj = [];
         } else {
         foreach ($aResp as $comment) {
-            $obj[] = new comment($comment);
+            $obj[] = new Comment($comment);
          }
      }
 
@@ -63,7 +63,7 @@ class CommentManager extends Manager
             $obj = [];
         } else {
         foreach ($aResp as $comment) {
-            $obj[] = new comment($comment);
+            $obj[] = new Comment($comment);
          }
      }
 
@@ -78,7 +78,7 @@ class CommentManager extends Manager
             $obj = [];
         } else {
         foreach ($aResp as $comment) {
-            $obj[] = new comment($comment);
+            $obj[] = new Comment($comment);
          }
      }
 

@@ -17,7 +17,7 @@ class PostManager extends Manager
         }
         else {
             foreach ($aresp as $post) {
-                $obj[] = new post($post);
+                $obj[] = new Post($post);
             }
         }
         return $obj; 
@@ -39,7 +39,7 @@ class PostManager extends Manager
         }
         else {
             foreach ($aresp as $post) {
-                $obj[] = new post($post);
+                $obj[] = new Post($post);
             }
         }
         return $obj;

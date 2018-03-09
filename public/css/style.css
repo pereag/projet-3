@@ -53,7 +53,7 @@
 	section {margin-top:80px;}
 
 	section h1 {
-		font-family: 'News Cycle';
+		font-family: 'News Cycle, arial';
 		color: #48452f;
 		margin-top: 5px;
 		margin-bottom: 10px;
@@ -62,13 +62,13 @@
 	}
 	section h2 {
 		margin-top: 10px;
-		font-family: 'News Cycle';
+		font-family: 'News Cycle, arial';
 		color: silver;
 		font-size: 1.8em;
 	}
 	section h3 {
 		margin-top: 10px;
-		font-family: 'News Cycle';
+		font-family: 'News Cycle, arial';
 		color:silver;
 		font-size: 1.7em;
 	}
@@ -84,7 +84,7 @@
 		color:silver;
 	}
 	section h4 {
-		font-family:'News Cycle';
+		font-family:'News Cycle, arial';
 		color: silver;
 	}
 	.article_list {
@@ -154,12 +154,12 @@
 	}
 	footer li  {
 		color:#7c7668;
-		font-family:'Lucida Sans Unicode';
+		font-family:'Lucida Sans Unicode, arial';
 		font-size: 1.1em;
 	}
 	footer li a {
 		color:#7c7668;
-		font-family:'Lucida Sans Unicode';
+		font-family:'Lucida Sans Unicode, arial';
 		font-size: 1.1em;
 	}
 	#administration_space {padding-left:75px;}
