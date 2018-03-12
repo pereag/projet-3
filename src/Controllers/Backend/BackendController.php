@@ -34,41 +34,41 @@ class BackendController extends \Blog\Controllers\Controller
 	public function addPost($title, $content)
 	{
 	    $postManager = new postManager();
-		 $newPost = $postManager->createPostAdmin(htmlspecialchars($title), $content);
+		 $newPost = $postManager->createPostAdmin($title, $content);
 	}
 
 	public function restoreComment($id)
 	{
 		$commentManager = new commentManager();
-		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin(htmlspecialchars($_GET['id']));
+		$returnRestoreComment = $commentManager->returnRestoreCommentAdmin($id);
 	}
 
 	public function removeComment($id)
 	{
 		$commentManager = new commentManager();
-		$removeComment = $commentManager->deleteCommentAdmin(htmlspecialchars($_GET['id']));
+		$removeComment = $commentManager->deleteCommentAdmin($id);
 	}
 
 	public function removePost($id)
 	{
 		$postManager = new postManager();
 		$commentManager = new commentManager();
-		$removePost = $postManager->deletePostAdmin(htmlspecialchars($_GET['id']));
-		$removecommentspost = $commentManager->deleteEveryCommentsAdmin(htmlspecialchars($_GET['id']));
+		$removePost = $postManager->deletePostAdmin($id);
+		$removecommentspost = $commentManager->deleteEveryCommentsAdmin($id);
 	}
 
 	public function modifPostAdmin($id)
 	{
 		$postManager = new postManager();
 		return $this->twig->render('backend/modifPostAdmin.twig', array(
-			'modifPost' => $postManager->getModifArticleAdmin(htmlspecialchars($_GET['id']))
+			'modifPost' => $postManager->getModifArticleAdmin($id)
 		));
 	}
 
 	public function sendModifPost($title, $content, $id)
 	{
 		$postManager = new postManager();
-		$modifPost = $postManager->sendArticleAdmin(htmlspecialchars($title), $content, htmlspecialchars($_GET['id']));
+		$modifPost = $postManager->sendArticleAdmin($title, $content, $id);
 	}
 
 	public function sessionDestroy()

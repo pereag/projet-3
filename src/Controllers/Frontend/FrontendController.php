@@ -30,21 +30,21 @@ class FrontendController extends \Blog\Controllers\Controller
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
 		return $this->twig->render('frontend/postView.twig', array(
-			'post' => $postManager->getPost(htmlspecialchars($id)),
-			'comments' => $commentManager->getComments(htmlspecialchars($id)),
+			'post' => $postManager->getPost($id),
+			'comments' => $commentManager->getComments($id),
 		));
 	}
 
 	public function addComment($postId, $pseudo, $content)
 	{
 	    $commentManager = new CommentManager();
-		return $affectedPost = $commentManager->postComment(htmlspecialchars($postId), htmlspecialchars($pseudo), htmlspecialchars($content));
+		return $affectedPost = $commentManager->postComment($postId, $pseudo, $content);
 	}
 
 	public function reportComment($id)
 	{
 		$commentManager = new CommentManager();
-		$reportComment = $commentManager->reportCommentPost(htmlspecialchars($_GET['id']));
+		$reportComment = $commentManager->reportCommentPost($id);
 	}
 
 	public function loginView()
@@ -55,6 +55,6 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function verifyLogin($pseudo, $password)
 	{
 		$membersManager = new MembersManager();
-		return $membersManager->getlogin(htmlspecialchars($pseudo), htmlspecialchars($password));
+		return $membersManager->getlogin($pseudo, $password);
 	}
 }
