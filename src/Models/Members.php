@@ -16,7 +16,7 @@ class Members
 
 	public function __construct($values = [])
 	{
-		if (! empty($values)) {
+		if (!empty($values)) {
 			$this->hydrate($values);
 		}
 	}
@@ -25,7 +25,6 @@ class Members
 	{
 		foreach ($data as $attribut => $value) {
 			$method = 'set'.ucfirst($attribut);
-
 			if (is_callable([$this, $method])) {
 				$this->$method($value);
 			}
@@ -41,7 +40,7 @@ class Members
 
 	public function setPseudo($pseudo)
 	{
-		if (! is_string($pseudo) and empty($pseudo)) {
+		if (!is_string($pseudo) and empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
 		} else {
 			$this->pseudo = $title;
@@ -50,7 +49,7 @@ class Members
 
 	public function setPassword($password)
 	{
-		if (! is_string($password)) {
+		if (!is_string($password)) {
 			$this->error[] = self::PASSWORD_INVALIDE;
 		}
 	}

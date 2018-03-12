@@ -8,7 +8,7 @@ use \Blog\Controllers\Frontend\FrontendController;
 use \Blog\Controllers\Backend\BackendController;
 
 try {
-	if (! empty($_GET['action'])) {
+	if (!empty($_GET['action'])) {
 		if ($_GET['action'] == 'listPostsView') {
 			$frontendController = new FrontendController();
 			echo $frontendController->listPostsView();
@@ -24,11 +24,11 @@ try {
 			}
 		} elseif ($_GET['action'] == 'addComment') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
-                if (! empty($_POST['pseudo']) && ! empty($_POST['content'])) {
+                if (!empty($_POST['pseudo']) && !empty($_POST['content'])) {
                 	$frontendController = new FrontendController();
                     $frontendController->addComment(htmlspecialchars($_GET['id']), htmlspecialchars($_POST['pseudo']), htmlspecialchars($_POST['content']));
                     if ($affectedPost === false) {
-	        		throw new Exception('Impossible d\'ajouter le commentaire !');
+	        			throw new Exception('Impossible d\'ajouter le commentaire !');
 	    			} else {
 	        		header('Location: index.php?action=postView&id=' . $_GET['id']);
 	    			}
@@ -52,7 +52,7 @@ try {
 			$frontendController = new FrontendController();
 			echo $frontendController->loginView();
 		} elseif ($_GET['action'] == 'verifyLogin' ) {
-			if (! empty($_POST['pseudo']) && ! empty($_POST['password'])) {
+			if (!empty($_POST['pseudo']) && !empty($_POST['password'])) {
 				$frontendController = new FrontendController();
 				if ($frontendController->verifyLogin(htmlspecialchars($_POST['pseudo']), htmlspecialchars($_POST['password']))) {
 					header('location: index.php?action=listPostsAdmin');
@@ -76,14 +76,14 @@ try {
 				echo $backendController->listCommentsAdmin(); 
 			} elseif ($_GET['action'] == 'restoreComment') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
-	                	$backendController = new backendController();
-	                    $backendController->restoreComment(htmlspecialchars($_GET['id']));
-	                    header('location: index.php?action=listCommentsAdmin');
+	                $backendController = new backendController();
+	                $backendController->restoreComment(htmlspecialchars($_GET['id']));
+	                header('location: index.php?action=listCommentsAdmin');
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }               
 	        } elseif ($_GET['action'] == 'addPost') {
-	        	if (! empty($_POST['title']) && ! empty($_POST['content'])) {
+	        	if (!empty($_POST['title']) && !empty($_POST['content'])) {
 	              	$backendController = new backendController();
 	                $backendController->addPost(htmlspecialchars($_POST['title']), $_POST['content']);
 	                if ($affectedLines === false) {
@@ -96,17 +96,17 @@ try {
 	            }   
 	        } elseif ($_GET['action'] == 'removeComment') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
-	                	$backendController = new backendController();
-	                    $backendController->removeComment(htmlspecialchars($_GET['id']));
-	                    header('location: index.php?action=listCommentsAdmin');
+	                $backendController = new backendController();
+	                $backendController->removeComment(htmlspecialchars($_GET['id']));
+	                header('location: index.php?action=listCommentsAdmin');
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }   
 	        } elseif ($_GET['action'] == 'removePost') {
 	            if (isset($_GET['id']) && $_GET['id'] > 0) {
-	                	$backendController = new backendController();
-	                    $backendController->removePost(htmlspecialchars($_GET['id']));
-	                    header('location: index.php?action=listPostsAdmin');
+	                $backendController = new backendController();
+	                $backendController->removePost(htmlspecialchars($_GET['id']));
+	                header('location: index.php?action=listPostsAdmin');
 	            } else {
 	                throw new Exception('L\'id n\'est pas valide');
 	            }   
@@ -122,7 +122,7 @@ try {
 				}
 			} elseif ($_GET['action'] == 'sendModifPost') {
 				if (isset($_GET['id']) && $_GET['id'] > 0) {
-					if (! empty($_POST['title']) && ! empty($_POST['content'])) {
+					if (!empty($_POST['title']) && !empty($_POST['content'])) {
 						$backendController = new BackendController();
 						$backendController->sendModifPost(htmlspecialchars($_POST['title']), $_POST['content'], htmlspecialchars($_GET['id']));
 						header('location: index.php?action=listPostsAdmin');
@@ -136,6 +136,8 @@ try {
 				$backendController = new BackendController();
 				$backendController->sessionDestroy();
 				header('location: index.php');
+			} else {
+				throw new Exception('Session expirée ou page introuvable');
 			}
 		} else {
 			throw new Exception('Session expirée ou page introuvable');

@@ -19,7 +19,7 @@ class Comment
 
 	public function __construct($values = [])
 	{
-		if (! empty($values)) {
+		if (!empty($values)) {
 			$this->hydrate($values);
 		}
 	}
@@ -28,7 +28,7 @@ class Comment
 	{
 		foreach ($data as $attribut => $value) {
 			$method = 'set'.ucfirst($attribut);
-
+			
 			if (is_callable([$this, $method])) {
 				$this->$method($value);
 			}
@@ -56,7 +56,7 @@ class Comment
 
 	public function setPseudo($pseudo)
 	{
-		if (! is_string($pseudo) && empty($pseudo)) {
+		if (!is_string($pseudo) && empty($pseudo)) {
 			$this->error[] = self::PSEUDO_INVALIDE;
 		} else {
 			$this->pseudo = $pseudo;
@@ -65,7 +65,7 @@ class Comment
 
 	public function setContent($content)
 	{
-		if (! is_string($content) && empty($content)) {
+		if (!is_string($content) && empty($content)) {
 			$this->error[] = self::CONTENT_INVALIDE;
 		} else {
 			$this->content = $content;

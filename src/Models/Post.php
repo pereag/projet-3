@@ -16,7 +16,7 @@ class Post
 
 	public function __construct($values = [])
 	{
-		if (! empty($values)) {
+		if (!empty($values)) {
 			$this->hydrate($values);
 		}
 	}
@@ -41,7 +41,7 @@ class Post
 
 	public function setTitle($title)
 	{
-		if (! is_string($title) and empty($title)) {
+		if (!is_string($title) and empty($title)) {
 			$this->error[] = self::TITRE_INVALIDE;
 		} else {
 			$this->title = $title;
@@ -50,7 +50,7 @@ class Post
 
 	public function setContent($content)
 	{
-		if (! is_string($content)) {
+		if (!is_string($content)) {
 			$this->error[] = self::CONTENU_INVALIDE;
 		} else {
 			$this->content = $content;

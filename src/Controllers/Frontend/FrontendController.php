@@ -13,10 +13,9 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function listPostsView()
 	{
 		$postManager = new PostManager();
-		
 		$posts = $postManager->getPosts();
 		return $this->twig->render('frontend/listPostsView.twig', array(
-			'posts' => $postManager->getPosts()
+		'posts' => $postManager->getPosts()
 		));
 	}
 
@@ -30,8 +29,8 @@ class FrontendController extends \Blog\Controllers\Controller
 		$postManager = new PostManager();
 		$commentManager = new CommentManager();
 		return $this->twig->render('frontend/postView.twig', array(
-			'post' => $postManager->getPost($id),
-			'comments' => $commentManager->getComments($id),
+		'post' => $postManager->getPost($id),
+		'comments' => $commentManager->getComments($id),
 		));
 	}
 

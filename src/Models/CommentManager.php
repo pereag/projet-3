@@ -13,6 +13,7 @@ class CommentManager extends Manager
         $req = $this->db->prepare('SELECT id, pseudo, idPost, content, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%imin\') AS dateComment FROM comments WHERE idPost = ? ORDER BY dateComment DESC');
         $req->execute(array($postId));
         $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
+
         if (!$aResp) {
             $obj = [];
         } else {
@@ -59,6 +60,7 @@ class CommentManager extends Manager
     {
         $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 0 ORDER BY idPost DESC');
         $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
+
         if (!$aResp) {
             $obj = [];
         } else {
@@ -74,6 +76,7 @@ class CommentManager extends Manager
     {
         $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 1 ORDER BY idPost DESC');
         $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
+        
         if (!$aResp) {
             $obj = [];
         } else {

@@ -12,10 +12,10 @@ class PostManager extends Manager
     {
         $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,350) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost');
         $aresp = $req->fetchAll(PDO::FETCH_ASSOC);
+
         if (!$aresp) {
             $obj = [];
-        }
-        else {
+        } else {
             foreach ($aresp as $post) {
                 $obj[] = new Post($post);
             }
@@ -34,10 +34,10 @@ class PostManager extends Manager
     {
         $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,116) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost DESC');
          $aresp = $req->fetchAll(PDO::FETCH_ASSOC);
+         
         if (!$aresp) {
             $obj = [];
-        }
-        else {
+        } else {
             foreach ($aresp as $post) {
                 $obj[] = new Post($post);
             }

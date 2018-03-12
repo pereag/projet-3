@@ -6,13 +6,14 @@ namespace Blog\Controllers\Backend;
 use Blog\Models\PostManager;
 use Blog\Models\CommentManager;
 use \Exception;
+
 class BackendController extends \Blog\Controllers\Controller
 {
 	public function listPostsAdmin()
 	{
 		$postManager = new PostManager();
 		return $this->twig->render('backend/listPostsAdmin.twig', array(
-			'posts' => $postManager->getPostsAdmin()
+		'posts' => $postManager->getPostsAdmin()
 		));
 	}
 
@@ -25,8 +26,8 @@ class BackendController extends \Blog\Controllers\Controller
 	{
 		$commentManager = new commentManager();
 		return $this->twig->render('backend/listCommentsAdmin.twig',array(
-			'comments' => $commentManager->getCommentsAdmin(),
-			'commentsReport' => $commentManager->getReportCommentsAdmin()
+		'comments' => $commentManager->getCommentsAdmin(),
+		'commentsReport' => $commentManager->getReportCommentsAdmin()
 		));
 
 	}
@@ -34,7 +35,7 @@ class BackendController extends \Blog\Controllers\Controller
 	public function addPost($title, $content)
 	{
 	    $postManager = new postManager();
-		 $newPost = $postManager->createPostAdmin($title, $content);
+		$newPost = $postManager->createPostAdmin($title, $content);
 	}
 
 	public function restoreComment($id)
@@ -61,7 +62,7 @@ class BackendController extends \Blog\Controllers\Controller
 	{
 		$postManager = new postManager();
 		return $this->twig->render('backend/modifPostAdmin.twig', array(
-			'modifPost' => $postManager->getModifArticleAdmin($id)
+		'modifPost' => $postManager->getModifArticleAdmin($id)
 		));
 	}
 
