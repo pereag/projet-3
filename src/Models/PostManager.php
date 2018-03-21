@@ -10,13 +10,13 @@ class PostManager extends Manager
 {
 	public function getPosts()
     {
-        $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,350) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost');
-        $aresp = $req->fetchAll(PDO::FETCH_ASSOC);
+        $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,350) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost DESC');
+        $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
 
-        if (!$aresp) {
+        if (!$aResp) {
             $obj = [];
         } else {
-            foreach ($aresp as $post) {
+            foreach ($aResp as $post) {
                 $obj[] = new Post($post);
             }
         }
@@ -33,12 +33,12 @@ class PostManager extends Manager
     public function getPostsAdmin()
     {
         $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,116) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost DESC');
-         $aresp = $req->fetchAll(PDO::FETCH_ASSOC);
+         $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
          
         if (!$aresp) {
             $obj = [];
         } else {
-            foreach ($aresp as $post) {
+            foreach ($aResp as $post) {
                 $obj[] = new Post($post);
             }
         }

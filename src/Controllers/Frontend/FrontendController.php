@@ -13,7 +13,6 @@ class FrontendController extends \Blog\Controllers\Controller
 	public function listPostsView()
 	{
 		$postManager = new PostManager();
-		$posts = $postManager->getPosts();
 		return $this->twig->render('frontend/listPostsView.twig', array(
 		'posts' => $postManager->getPosts()
 		));

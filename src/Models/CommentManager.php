@@ -58,7 +58,7 @@ class CommentManager extends Manager
 
     public function getCommentsAdmin()
     {
-        $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 0 ORDER BY idPost DESC');
+        $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 0 ORDER BY dateComment DESC');
         $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
 
         if (!$aResp) {
@@ -74,7 +74,7 @@ class CommentManager extends Manager
 
     public function getReportCommentsAdmin()
     {
-        $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 1 ORDER BY idPost DESC');
+        $req = $this->db->query('SELECT id, idPost, pseudo, content, report, DATE_FORMAT(date_comment, \'%d/%m/%Y à %Hh%i\') AS dateComment FROM comments WHERE report = 1 ORDER BY dateComment DESC');
         $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
         
         if (!$aResp) {
