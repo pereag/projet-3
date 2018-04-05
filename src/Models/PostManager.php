@@ -35,7 +35,7 @@ class PostManager extends Manager
         $req = $this->db->query('SELECT id, title, SUBSTRING(content,1,116) AS content, DATE_FORMAT(datePost, \'%d/%m/%Y\') AS datePost FROM posts ORDER BY datePost DESC');
          $aResp = $req->fetchAll(PDO::FETCH_ASSOC);
          
-        if (!$aresp) {
+        if (!$aResp) {
             $obj = [];
         } else {
             foreach ($aResp as $post) {
